@@ -1,4 +1,10 @@
-div{
+div#wrap{
+  width: 100%;
+  border: 1px solid black;
+
+}
+
+nav{
     box-sizing: border-box;
     width: 90px;
     height: 20px;

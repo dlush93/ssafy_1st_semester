@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="01_nav_footer.css">
+  <link rel="stylesheet" href="03_community.css">
+  <title>Community</title>
+</head>
+<body>
+  <!-- 01_nav_footer.html -->
+  <!-- 01_nav_footer 에서 완성한 Navigation bar 코드를 붙여넣어 주세요. -->
+  <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+    <a class="navbar-brand" href="02_home.html">
+      <img class="img-fluid"src="images/logo.png" width="100"height="80">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExample04" style>
+      <ul class="navbar-nav list-unstyled mb-0 ">
+        <li class="nav-item active mx-3 font-weight-light text-black-50 "><a href="02_home.html" class="text-white-50 text-decoration-none">Home</a></li>
+        <li class="nav-item mx-3 font-weight-bold text-black-50"><a href="03_community.html" class="text-white text-decoration-none">Community</a></li>
+        <li class="nav-item mx-3 font-weight-light text-black-50" data-toggle="modal" data-target="#exampleModal"><a href="#" class="text-white-50 text-decoration-none">Login</a></li>
+      </ul>
+    </div>
+</nav>
+  <!-- 03_community.html -->
+
+    <h1 class="text-center my-5">Community</h1>
+    <!-- Sidebar -->
+  <div class="main mb-5">
+    <div class="container">
+    <div class="row">
+      <aside class="col-lg-2 mb-3">
+        <ul class="list-unstyled m-0">
+          <li class="border pl-4 py-3"><a href="#">Boxoffice</a></li>
+          <li class="border pl-4 py-3"><a href="#">Movies</a></li>
+          <li class="border pl-4 py-3"><a href="#">Genres</a></li>
+          <li class="border pl-4 py-3"><a href="#">Actors</a></li>
+        </ul>
+      </aside>
+
+      <!-- Board -->
+      <section class="col-lg-10">
+        <div class="d-none d-lg-block">
+          <table class="table table-striped">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">영화 제목</th>
+                <th scope="col">글 제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">작성시간</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">BREAKING BAD</th>
+                <td>새로운 영화</td>
+                <td>강동훈</td>
+                <td>10 minutes ago</td>
+              </tr>
+              <tr>
+                <th scope="row">kaafiron Ki Namaaz</th>
+                <td>처음 보는 영화</td>
+                <td>강병국</td>
+                <td>50 minutes ago</td>
+              </tr>
+              <tr>
+                <th scope="row">INSURGENT</th>
+                <td>세상을 바꿀 그들이 온다. 인서전트</td>
+                <td>고성진</td>
+                <td>10 hours ago</td>
+              </tr>
+              <tr>
+                <th scope="row">Fight Club</th>
+                <td>당신의 편견을 뒤흔드는 영화</td>
+                <td>최우영</td>
+                <td>12 hours ago</td>
+              </tr>
+              <tr>
+                <th scope="row">LEON</th>
+                <td> 킬러는 어떤선택을 할까</td>
+                <td>최우석</td>
+                <td>1 day ago</td>
+              </tr>
+              <tr>
+                <th scope="row">JOKER</th>
+                <td>아웃사이더의 반란</td>
+                <td>김영환</td>
+                <td>1 month ago</td>
+              </tr>
+  
+            </tbody>
+          </table>
+          <nav class="d-flex justify-content-center mt-5" aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+
+
+        <div class="d-lg-none">
+          <article class="mt-5">
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action border-left-0 border-right-0">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 font-weight-bold">새로운 영화</h5>
+                  <small>강동훈</small>
+                </div>
+                <p class="mb-1">BREAKING BAD</p>
+                <small>10 minutes ago</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action border-left-0 border-right-0">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 font-weight-bold">처음 보는 영화</h5>
+                  <small class="text-muted">강병국</small>
+                </div>
+                <p class="mb-1">kaafiron Ki Namaaz</p>
+                <small class="text-muted">50 minutes ago</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action  border-left-0 border-right-0">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 font-weight-bold">세상을 바꿀 그들이 온다.</h5>
+                  <small class="text-muted">고성진</small>
+                </div>
+                <p class="mb-1">INSURGENT</p>
+                <small class="text-muted">10 hours ago</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action  border-left-0 border-right-0">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 font-weight-bold">당신의 편견을 뒤흔드는 영화</h5>
+                  <small class="text-muted">최우영</small>
+                </div>
+                <p class="mb-1">Fight Club</p>
+                <small class="text-muted">12 hours ago</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action  border-left-0 border-right-0">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 font-weight-bold">킬러는 어떤 선택을 할까</h5>
+                  <small class="text-muted">최우석</small>
+                </div>
+                <p class="mb-1">LEON</p>
+                <small class="text-muted">1 days ago</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action  border-left-0 border-right-0">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 font-weight-bold">아웃사이더의 반란</h5>
+                  <small class="text-muted">김영환</small>
+                </div>
+                <p class="mb-1">JOKER</p>
+                <small class="text-muted">1 month ago</small>
+              </a>
+            </div>
+          </article>
+          <nav class="d-flex justify-content-center mt-5"aria-label="Page navigation example">
+            <ul class="pagination m-0">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+      
+    </div>
+  </div>
+</div>
+
+  <!-- 01_nav_footer.html -->
+  <!-- 01_nav_footer 에서 완성한 Footer 코드를 붙여넣어 주세요. -->
+  <!-- 푸터 -->
+  <footer class="fixed-bottom d-flex bg-light justify-content-center align-items-center mt-5">
+    <p class=" text-muted mb-0 py-2">HTML & CSS project. Created by 이창완, 2020</p>
+  </footer>
+  <!-- 모달 -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <small id="emailHelp" class="form-text text-muted">아이디를 입력해주세요</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Jquery & Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

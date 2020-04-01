@@ -20,9 +20,11 @@ def create_review(request):
     return redirect(f'/community/review_detail/{review.id}')   ### 각자 detail에 들어가는 redirect
     # return redirect('/community/')  ### 전체리스트로 돌아가는 redirect
     # return render(request,'community/create_review.html')
+
 def review_detail(request,review_id):
     review=Review.objects.get(id=review_id)
     context={
         'review':review,
     }
     return render(request,'community/review_detail.html',context)
+    

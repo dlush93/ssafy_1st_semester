@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="display-4 text-center border-bottom col-12 my-5">{{ review.title }}</div>
+        <p class="col-12 text-justify py-5 px-5 bg-secondary text-warning" style=" border:solid 1px black;font-size:1.5rem">
+            {{review.content}}
+        </p>
+        <div class="col-12 display-3 text-center">
+            평점 : {{ review.rank }}
+        </div>
+
+        <div class="col-8 text-right mt-5">
+           <p> 작성 날짜 : {{ review.created_at}} </p>
+        </div>
+
+        <a href="/community/" class="col-4 text-right mt-5" >
+            뒤로 가기
+        </a>
+
+
+    </div>
+</div>
+
+{% endblock %}

@@ -16,7 +16,7 @@
 ### 3.  삭제 기능을 구현하기 위해 빈칸에 들어갈 코드를 작성하시오. 단, 삭제가 완료되면 index 페이지로 이동해야 한다.
 
 - (a)=`reservation_id`
-- (b)=`reservation_id`
+- (b)=`delete`
 - (c)=`reservations:index`
 
 ### 4. form 태그의 method 속성은 GET과 POST 속성값을 가질 수 있다. 이 때, 두 값을 비교하여 서술하시오.

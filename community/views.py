@@ -6,7 +6,6 @@ from .forms import ReviewForm
 
 def index(request):
     reviews=Review.objects.order_by('-id')
-    lens=range(1,len(Review.objects.all())+1)
     context={
         'reviews':reviews,
     }

@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
+    {% block nav %}
+    {% if request.resolver_match.url_name == 'create' %}
+        <li class="nav-item mx-3 my-2 "><a href="{% url 'community:index' %}" class="nav-link">전체 리뷰 목록</a></li>
+        <li class="nav-item mx-3 my-2 active "><a href="{% url 'community:create' %}" class="nav-link">새로운 리뷰 작성하기</a></li>
+    {% else %}
+         <li class="nav-item mx-3 my-2 "><a href="{% url 'community:index' %}" class="nav-link">전체 리뷰 목록</a></li>
+        <li class="nav-item mx-3 my-2 "><a href="{% url 'community:create' %}" class="nav-link">새로운 리뷰 작성하기</a></li>
+    {% endif %}
+    {% endblock %}
+
+
 
 {% block body %}
+    <div class="text-center h1 col-6 offset-3 mt-5 mb-5" style="border-bottom: 2px solid">영화 리뷰 게시판</div>
+    {% if request.resolver_match.url_name == 'create' %}
+        <h2 class="text-center font-weight-bold">새 글 작성</h2>
+    {% else %}
+        <h2 class="text-center font-weight-bold">수정하기</h2>
+    {% endif %}
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="제출">
+    <input class="btn btn-primary mb-5" type="submit" value="제출">
 </form>
 
 {% endblock %}

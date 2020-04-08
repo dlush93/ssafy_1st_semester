@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    {% for review in reviews %}
+
+        <p>{{ review.id }}</p>
+        <p>{{ review.title }}</p>
+        <p>{{ review.content }}</p>
+        <a href="{% url 'community:detail' review.id %}"> 글 보러가기</a>
+    {% endfor %}
+{% endblock %}

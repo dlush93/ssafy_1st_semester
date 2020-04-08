@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <p>{{ review.id }}</p>
+    <p>{{ review.title }}</p>
+    <p>{{ review.content }}</p>
+    <a href="{% url 'community:update' review.id %}">수정</a>
+    <form action="{% url 'community:delete' review.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제">
+    </form>
+{% endblock %}

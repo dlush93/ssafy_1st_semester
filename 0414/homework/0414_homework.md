@@ -70,11 +70,13 @@
 
 -  로그인을 하지않았는데, 로그아웃에 접근하면 안된다.
 
+-  `logout`이름이 함수이름과 같아서 중복되서 재귀가 일어나 제대로 시행안되는 문제가 발생한다.
+
 - 해결방법
 
   - ```python
     from django.contrib.auth.decorators import login_required
-    
+    from django.contrib.auth import logout as auth_logout
     @login_required
     def logout(request):
         auth_logout(request)
@@ -83,3 +85,5 @@
     ```
 
   - `login_required` 모듈을 추가해줘서 `logout`함수위에 작성해주면 된다. 이렇게 되면, 로그아웃 함수에 로그인이 되어야지만 접속이 가능하다.
+  
+  - `logout`을 해결하기 위해 `auth_logout`으로 이름을 변경해줘야한다.

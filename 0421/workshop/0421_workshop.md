@@ -62,8 +62,9 @@ def comments_create(request,article_id):
 
 ```python
 def comment_delete(request,article_id,comment_id):
-    comment=Comment.objects.get(id=comment_id)
-    comment.delete()
-    return redirect('articles:detail',article_id)
+    if request.method=='POST'
+        comment=Comment.objects.get(id=comment_id)
+        comment.delete()
+        return redirect('articles:detail',article_id)
 ```
 

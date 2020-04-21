@@ -22,9 +22,33 @@ class Comment(models.Model):
 
 ```
 
-### 2. Comment Create
+### 2. views.py
 
 ```python
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Article,Comment
+from .forms import ArticleForm,CommentForm
+
+def index(request):
+    articles = Article.objects.all()
+    context = {
+        'articles': articles,
+    }
+    return render(request, 'articles/index.html', context)
+
+def create(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = form.save()
+            return redirect('articles:detail', article.pk)
+    else:
+        form = ArticleForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'articles/form.html', context)
+
 def detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     form=CommentForm()
@@ -44,27 +68,27 @@ def comments_create(request,article_id):
             comment.save()
 
     return redirect('articles:detail',article_id)
-```
 
-### 3. Comment Read
-
-```python
-	{% for comment in article.comment_set.all %}
-		댓글 번호 : {{ forloop.counter}}
-		댓글 목록 : {{ comment.content }}
-		<a href="{% url 'articles:comment_delete' article.pk comment.pk %}">댓글삭제</a>
-		<hr>
-
-	{% endfor %}
-```
-
-### 4. Comment Delete 
-
-```python
 def comment_delete(request,article_id,comment_id):
-    if request.method=='POST'
-        comment=Comment.objects.get(id=comment_id)
-        comment.delete()
-        return redirect('articles:detail',article_id)
+    comment=Comment.objects.get(id=comment_id)
+    comment.delete()
+    return redirect('articles:detail',article_id)
+```
+
+### 3.forms.py
+
+```python
+from django import forms
+from .models import Article, Comment
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = '__all__'
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Comment
+        fields=['content',]
 ```
 

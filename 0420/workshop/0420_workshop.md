@@ -53,9 +53,7 @@ SELECT grade,COUNT(grade) FROM hotels
 GROUP BY grade
 ORDER by COUNT(grade) DESC;
 
-SELECT grade,COUNT(grade) FROM hotels
-ORDER by COUNT(grade) DESC
-GROUP BY grade;
+
 
 grade | COUNT(grade)
 suite | 2

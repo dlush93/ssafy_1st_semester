@@ -92,3 +92,6 @@ class CommentForm(forms.ModelForm):
         fields=['content',]
 ```
 
+### detail 페이지
+
+![image-20200421181843268](0421_workshop.assets/image-20200421181843268.png)

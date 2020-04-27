@@ -59,7 +59,7 @@ def delete(request,article_pk):
         return redirect('articles:index')
 ```
 
-- 발생하는 에러 메시지는 403 에러이다.
+- 발생하는 에러 메시지는 405 에러이다.
 - 발생원인은 login_required로 인해 next로 login 함수를 가게 되면 GET 요청으로 delete에 오게 된다.
 - 그럼으로 POST 방식만 접근가능한 delete 함수에 접근이 불가능하게 된다.
 - 그러므로 @login_required를 제거해주고, 함수 내부에서 request.user.is_authenticated를 통해 유저가 로그인 되어있는지 판별 후

@@ -6,9 +6,10 @@
 
 ```python
 from django.shortcuts import render
-from .models import Artist,Music
+from django.contrib import messages
+from .models import Artist,Music,Comment
 from rest_framework import status
-from .serialzers import ArtistSerializer,ArtistDetailSerializer,MusicSerializer,MusicDetailSerializer
+from .serialzers import ArtistSerializer,ArtistDetailSerializer,MusicSerializer,MusicDetailSerializer,CommentSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 # Create your views here.
@@ -47,7 +48,7 @@ def artist_detail(request,artist_id):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view(['GET','POST'])
+@api_view(['GET'])
 def music_list(request):
 
     if request.method == 'GET':
@@ -55,12 +56,7 @@ def music_list(request):
         serializer = MusicSerializer(musics, many=True)
 
         return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = MusicSerializer(data = request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @api_view(['GET','PUT','DELETE'])
@@ -79,6 +75,30 @@ def music_detail(request,music_id):
         music = Music.objects.get(id=music_id)
         music.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+@api_view(['POST'])
+def comment_create(request,music_id):
+    serializer = CommentSerializer(data = request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(music_id = music_id)
+        return Response(serializer.data)
+
+@api_view(['PUT','DELETE'])
+def comment_detail(request,comment_id):
+    if request.method == 'PUT':
+        comment = Comment.objects.get(id = comment_id)
+        serializer = CommentSerializer(comment,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({
+                "message":"성공적으로 수정되었습니다.",})
+    elif request.method == 'DELETE':
+        comment = Comment.objects.get(id = comment_id)
+        comment.delete()
+        return Response({
+                "message":"성공적으로 삭제 되었습니다. ",} )
 ```
 
 
@@ -155,3 +175,29 @@ class MusicDetailSerializer(serializers.ModelSerializer):
 #### 4. musics/<int : music_id>
 
 ![image-20200511211127371](0511_workshop.assets/image-20200511211127371.png)
+
+
+
+
+
+#### 5. musics/<int : music_id >/comments/
+
+![image-20200511234451714](0511_workshop.assets/image-20200511234451714.png)
+
+
+
+
+
+#### 6. comments/<int : comment_id > /
+
+- PUT
+
+![image-20200511234558949](0511_workshop.assets/image-20200511234558949.png)
+
+![image-20200511234620693](0511_workshop.assets/image-20200511234620693.png)
+
+
+
+- DELETE
+
+  ![image-20200511234649255](0511_workshop.assets/image-20200511234649255.png)

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center h1 col-6 offset-3 mt-5 mb-5" style="border-bottom: 2px solid">영화 게시판</div>
+    <table class="table mx-auto table-bordered mt-5">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="text-center">번호</th>
+      <th scope="col" class="text-center">영화제목</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for movie in movies %}
+        <tr>
+          <th scope="row" class="text-center">{{ forloop.revcounter }}</th>
+
+          <td><a href="{% url 'movies:detail' movie.id %}" class="text-dark text-decoration-none ">{{ movie.title }}</a></td>
+
+        </tr>
+
+    {% endfor %}
+      </tbody>
+</table>
+
+           {% if user.is_superuser %}
+        <a href="{% url 'movies:create' %}">새 영화 등록</a>
+        {% endif %}
+{% endblock %}

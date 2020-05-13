@@ -13,18 +13,18 @@ class MovieForm(forms.ModelForm):
                     }
                 )
         )
-    poster = forms.CharField(
-            label='poster',
-            help_text='',
-            widget=forms.TextInput(
-                    attrs={
-                        'class': 'w-100 ',
-                        'placeholder': 'url을 입력해주세요'
-                    }
-                )
-        )
+    # poster = forms.CharField(
+    #         label='poster',
+    #         help_text='',
+    #         widget=forms.TextInput(
+    #                 attrs={
+    #                     'class': 'w-100 ',
+    #                     'placeholder': 'url을 입력해주세요'
+    #                 }
+    #             )
+    #     )
     class Meta:
         model = Movie
-        fields = '__all__'
+        fields = ['title']
 
 

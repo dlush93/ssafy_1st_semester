@@ -24,7 +24,7 @@
       
       // document.execCommand('Underline')
       var txt = '\n 출처 : 이창완'
-      var txturl = '[출처] : '+document.URL 
+      var txturl = '\n [출처] : '+document.URL 
       
       event.preventDefault()
       event.clipboardData.setData('text/plain',document.getSelection()+txturl)
@@ -123,16 +123,21 @@
       /// newList 는 TodoList의 ul을 나타내는 것이다.
       newTodoEditBtn.innerText = 'Edit'
       newTodoEditBtn.addEventListener('click',function(){
-        TodoListLabel.innerText = newTodoEditInput.value+':'
-        newTodoEditInput.value = null
+        if (newTodoEditInput.value !== ""){
+        const temp2 = event.target.previousSibling
+        const temp1 = temp2.previousSibling
+        temp1.innerText = temp2.value+':'
+        temp2.value = null
+      }
       })
       newList.appendChild(newTodoEditBtn)
       //// 삭제 버튼
       //// newTodoDeleteBtn은 삭제버튼이다.
       const newTodoDeleteBtn = document.createElement('button')
       newTodoDeleteBtn.innerText = 'Delete'
-      newTodoDeleteBtn.addEventListener('click',function(){
-        newList.remove()
+      newTodoDeleteBtn.addEventListener('click',function(event){
+        event.target.parentNode.remove()
+        // newList.remove()
       })
       newList.appendChild(newTodoDeleteBtn)
 

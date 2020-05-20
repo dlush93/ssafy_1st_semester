@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+  <h1> 좋아하는 장르를 선택 해 보세요</h1>
+  <div class="col-12"></div>
+  <li class = "dropdown">
+    <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      장르를 선택하세요
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+  {% for genre in genres %}
+    <a class="dropdown-item"href="{% url 'movies:recommand_genre' genre.id %}">{{genre.name}}</a>
+    
+  {% endfor %}
+</div>
+</li>
+{% endblock %}

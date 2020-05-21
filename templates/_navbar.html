@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
@@ -7,6 +9,17 @@
     <!-- 여기에 리뷰게시판 들어가는거 추가하기 !!!-->
     <li class = "nav-item mx-3 my-2 py-2 text-primary"> <a href="{% url 'movies:index'%}"> 영화 게시판 들어가기</a></li>
     <li class = "nav-item mx-3 my-2 py-2 text-primary"> <a href="{% url 'movies:recommand'%}"> 추천 게시판 들어가기</a></li>
+    <li class = "nav-item dropdown my-1 py-1">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        추천 장르를 선택하세요
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    {% for gen in gens %}
+      <a class="dropdown-item"href="{% url 'movies:recommand_genre' gen.id %}">{{gen.name}}</a>
+      
+    {% endfor %}
+  </div>
+  </li>
    {% if request.user.is_authenticated %}
         <li class="nav-item mx-3 my-2 h5 text-center py-2 text-primary "> {{ request.user.username }}님 안녕하세요 </li>
         <li class="nav-item mx-3 my-2 "><a href="{% url 'accounts:logout' %}" class="nav-link" >로그아웃</a></li>
@@ -14,6 +27,12 @@
         <li class="nav-item mx-3 my-2 "><a href="{% url 'accounts:signup' %}"  class="nav-link">회원가입</a></li>
         <li class="nav-item mx-3 my-2 "><a href="{% url 'accounts:login' %}"  class="nav-link">로그인</a></li>
     {% endif %}
+      
+
+
+
+
+
 
 
 

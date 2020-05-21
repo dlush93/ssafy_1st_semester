@@ -3,11 +3,11 @@
 
 
 {% block body %}
-  <h1> 좋아하는 장르를 선택 해 보세요</h1>
-  <div class="col-12"></div>
-  <li class = "dropdown">
+  <div class=""><h1> 추천 게시판</h1></div>
+  <div class="w-100 my-5"></div>
+  <li class = "dropdown" style="list-style:none;">
     <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      장르를 선택하세요
+      직접 장르를 선택하실래요
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
   {% for genre in genres %}
@@ -16,4 +16,9 @@
   {% endfor %}
 </div>
 </li>
+<div class="w-100"></div>
+<div class="mt-5"> <a href="{% url 'movies:recommand_genre_random' %}">아니면 랜덤하게 장르를 골라 보실래요.? </a></div>
+<div class="w-100"></div>
+<div class="mt-5"> <a href="{% url 'movies:recommand_random' %}">그냥 랜덤하게 골라 보실래요.? </a></div>
+
 {% endblock %}

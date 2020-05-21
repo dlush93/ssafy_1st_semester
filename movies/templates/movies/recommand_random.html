@@ -4,9 +4,9 @@
 {% block body %}
   <div class="text-center h1 col-6 mt-5 mb-5" style="border-bottom: 2px solid">영화 게시판</div>
   <div class="col-12"></div>
-  {% for movie in page_obj %}
+  {% for movie in movies %}
 
-  <div class="col-sm-6 col-md-4 mb-3" >
+  <div class="col-sm-6 col-md-4 mb-3" style="">
     <div class="border mx-2 p-3">
         <img src="https://image.tmdb.org/t/p/w780/{{movie.poster_path}}" class="card-img-top p-1" width = "auto" height="400px">
         <div class="card-body" >
@@ -43,19 +43,12 @@
     </div>
   </div>
   {% endfor %}
-  {% if page_cnt == 1 %}
-    div.col-sm-6.col-md-4
-    <div class="col-sm-6 col-md-4"></div>
-    <div class="col-sm-6 col-md-4"></div>
-  {% elif page_cnt == 2 %}
   <div class="col-sm-6 col-md-4"></div>
-  {% endif %}
-  
-  <div class= "col-12"></div>
+  <div class="col-sm-6 col-md-4"></div>
+  <div class= "w-100"></div>
 
 
 
-  <ul class= "col-4">{% bootstrap_paginate page_obj range=10 show_prev_next="false" show_first_last="true" %}</ul>
   <script>  
   const likeBtns = document.querySelectorAll('[data-like]')
   
@@ -102,27 +95,5 @@
   
   
   
-  </script>
-  <script>
-    const imgBtns = document.querySelectorAll('img')
-    console.log(imgBtns)
-  
-
-
-    imgBtns.forEach((imgBtn)=>{
-      imgBtn.addEventListener('mouseover',function(event){
-        event.target.style.transform = "scale(1.2)";
-        event.target.style.zIndex = 1;
-        event.target.style.transition = "all 0.5s";
-      })
-    })
-    imgBtns.forEach((imgBtn)=>{
-      imgBtn.addEventListener('mouseout',function(event){
-        event.target.style.transform = "scale(1)";
-        event.target.style.zIndex = 0;
-        event.target.style.transition = "all 0.5s";
-      })
-    }
-    )
   </script>
 {% endblock %}

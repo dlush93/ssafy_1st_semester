@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from .models import Genre
 import random
+from .forms import MovieForm
 # Create your views here.
 def index(request):
     movies = Movie.objects.all()
@@ -38,12 +39,23 @@ def like(request,movie_id):
     return JsonResponse(context)
 
 def recommand(request):
-    genres = Genre.objects.all()
+    if request.method == 'POST':
+        a= request.POST
+        genre_list = a.getlist('genres')
+        movies = Movie.objects.filter(genres__in=genre_list).order_by('-popularity','-vote_average').distinct()[:10]
+        context ={
+            'movies':movies
+        }
+        return render(request,'movies/recommand_random.html',context)
+    else:
+        genres = Genre.objects.all()
+        form = MovieForm()
 
-    context = {
-        'genres': genres,
-    }
-    return render(request,'movies/recommand.html',context)
+        context = {
+            'genres': genres,
+            'form': form
+        }
+        return render(request,'movies/recommand.html',context)
 
 def recommand_genre(request,genre_id):
     genre = Genre.objects.get(id=genre_id)

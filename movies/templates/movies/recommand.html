@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-
+{% load crispy_forms_tags %}
 {% block body %}
   <div class=""><h1> 추천 게시판</h1></div>
   <div class="w-100 my-5"></div>
@@ -20,5 +20,12 @@
 <div class="mt-5"> <a href="{% url 'movies:recommand_genre_random' %}">아니면 랜덤하게 장르를 골라 보실래요.? </a></div>
 <div class="w-100"></div>
 <div class="mt-5"> <a href="{% url 'movies:recommand_random' %}">그냥 랜덤하게 골라 보실래요.? </a></div>
-
+<div class="w-100"></div>
+<div class="text-center mt-5"> 여러개를 골라보실래요.?
+<form action="" method='POST'>
+  {% csrf_token %}
+  {{form|crispy}}
+  <button>제출</button>
+</form>
+</div>
 {% endblock %}

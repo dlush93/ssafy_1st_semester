@@ -22,15 +22,10 @@ def index(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+
 def MovieDetail(request,movie_id):
     if request.method == 'GET':
         print(request.user.is_superuser)
         movie = Movie.objects.filter(id=movie_id)
         serializer = MovieDetailSerializer(movie,many=True)
         return Response(serializer.data)
-    if request.method == 'POST':
-        serializer = MovieRankSerializer(data = request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(movie_id=movie_id)
-            return Response(serializer.data)

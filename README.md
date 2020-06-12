@@ -25,4 +25,3 @@ python manage.py loaddata moviedata.json
 ```text
 pip install -r requirements.txt
 ```
-

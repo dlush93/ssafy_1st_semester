@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+####  PageNumberPagination
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10, 
+}
 
 # Application definition
 
@@ -149,5 +154,12 @@ STATIC_URL = '/static/'
 #### CORS_ORIGIN_WHITELIST 를 사용하여, 리스트로 저장해준다.
 CORS_ORIGIN_ALLOW_ALL = True
 
-
 AUTH_USER_MODEL = 'accounts.User'
+
+### django rest framework에서 인증방식이다. 
+### 토큰 방식이라 TokenAuthentication이다.
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}

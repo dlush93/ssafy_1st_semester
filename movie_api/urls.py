@@ -21,9 +21,9 @@ urlpatterns = [
 
 
 
-    path('api/v1/movies/',include('movies.urls')),
+    path('api/v1/movies/', include('movies.urls')),
     #### django rest-auth 로그인 로그아웃 
-    path('rest-auth/',include('rest_auth.urls')),
+    path('rest-auth/', include('rest_auth.urls')),
     #### django rest-allauth 회원가입
-    path('rest-auth/signup/',include('rest_auth.registration.urls'))
+    path('rest-auth/signup/', include('rest_auth.registration.urls'))
 ]

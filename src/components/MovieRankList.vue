@@ -2,7 +2,7 @@
   <div class="pt-3 px-5 mb-2 bg-light text-dark">
 
     <div>
-      <div class="d-flex float-right align-items-center">
+      <div class="d-flex float-right align-items-center mb-2">
         <span class="mr-2">평점 : {{rankData.rank*2}} 점</span>
         <star-rating :increment="0.5" v-model="rankData.rank" :star-size="30" :show-rating="false"></star-rating>
       </div>
@@ -29,8 +29,6 @@
     </div>
   </div>
 </template>
-
-
 
 <script>
 import MovieRankListItem from '@/components/MovieRankListItem.vue'
@@ -63,16 +61,15 @@ export default {
         this.$router.push({ name: 'Login'})
       }
       this.rankData.rank = this.rankData.rank*2
-      console.log(typeof(this.rank))
+      // console.log(typeof(this.rank))
       const request_header = {
         headers: {
           'Authorization': `Token ${this.$cookies.get('auth-token')}`
         }
       }
       axios.post(API_URL + this.movie.id + '/comments/', this.rankData, request_header)
-        .then((res)=>{
-          console.log(res)
-          console.log(this.movie.id)
+        .then(()=>{
+          
           // 현재 새로고침
           this.$router.go()
         })

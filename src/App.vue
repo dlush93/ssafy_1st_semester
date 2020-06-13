@@ -2,8 +2,9 @@
 
   <div id="app" class="d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
-      <div class="inner">
-        <h3 class="masthead-brand">MMM</h3>
+      <div class="inner" style="height=100%">
+        
+        <img src="./assets/Logo.png" alt="로고"  class="masthead-brand" height="50px">
         <nav class="nav nav-masthead float-left ml-3">
           <router-link to="/" class="nav-link hover-item " :class="{active : isactive.MovieList}">Home</router-link>
           <router-link to="/community" class="nav-link hover-item " :class="{active : isactive.CommunityView}">커뮤니티</router-link>

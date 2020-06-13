@@ -9,12 +9,12 @@
           <span v-for="genre in movie.genres" :key="genre.id" class="genre-list mr-3">{{ genre.name }}</span>
           <div id="meta-table" class="row mt-3">
             <div class="col-6">
-              <p>출시일</p>
-              <span class="meta-data">{{ movie.popularity }}</span>
-            </div>
-            <div class="col-6">
               <p>영화점수</p>
               <span class="meta-data">{{ movie.release_date }}</span>
+            </div>
+            <div class="col-6">
+              <p>출시일</p>
+              <span class="meta-data">{{ movie.popularity }}</span>
             </div>
             <div class="col-12 my-3"></div>
             <div class="col-6">

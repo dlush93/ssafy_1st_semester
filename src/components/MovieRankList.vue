@@ -1,14 +1,12 @@
 <template>
   <div class="p-3 mb-2 bg-light text-dark">
     <h1>ArticleList</h1>
-    <input type="text" v-model="input">
-    
-    <div class="wrap-star">
-      <div class='star-rating'>
-        <span style ="width:30%"></span>
-      </div>
-    </div>
-    <button>작성</button>
+
+    <label for="content">내용</label>
+    <input id="content" type="text" v-model="rankData.content">
+    <label for="rank">평점</label>
+    <input if="rank" type="number" min="0" max="10" v-model="rankData.rank"/>
+    <button @click="createRank">작성</button>
     <p class="text-left">댓글 {{ movie.movierank_count }}개</p>
     <MovieRankListItem v-for="movierank in movie.movierank" :key="movierank.id"/>
   </div>
@@ -18,13 +16,16 @@
 import MovieRankListItem from '@/components/MovieRankListItem.vue'
 import axios from 'axios'
 
-// const API_URL = 'http://127.0.0.1:8000/api/v1/movies/'
+const API_URL = 'http://127.0.0.1:8000/api/v1/movies/'
 // <int : movie.id>/comments
 export default {
   name: 'MovieRankList',
   data() {
     return {
-      input: '',
+      rankData: {
+        'content': '',
+        'rank': 5
+      }
     }
   },
   props: {
@@ -37,14 +38,27 @@ export default {
   },
   methods: {
     createRank() {
-      axios.post()
-    }
-  }
+      const request_header = {
+        headers: {
+          'Authorization': `Token ${this.$cookies.get('auth-token')}`
+        }
+      }
+      axios.post(API_URL + this.movie.id + '/comments/', this.rankData, request_header)
+        .then((res)=>{
+          console.log(res)
+          console.log(this.movie.id)
+
+          // 현재 새로고침
+          this.$router.go()
+        })
+        .catch((err)=>{
+          console.log(err.response)
+        })
+    },
+  },
 }
 </script>
 
 <style>
-  .star-rating { width:205px; }
-  .star-rating,.star-rating span { display:inline-block; height:39px; overflow:hidden; background: url('../assets/star.png') no-repeat; }
-  .star-rating span{ background-position:left bottom; line-height:0; vertical-align:top; }
+
 </style>

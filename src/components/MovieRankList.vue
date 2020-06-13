@@ -1,16 +1,38 @@
 <template>
-  <div class="p-3 mb-2 bg-light text-dark">
-    <h1>ArticleList</h1>
+  <div class="pt-3 px-5 mb-2 bg-light text-dark">
 
-    <label for="content">내용</label>
-    <input id="content" type="text" v-model="rankData.content">
-    <label for="rank">평점</label>
-    <input if="rank" type="number" min="0" max="10" v-model="rankData.rank"/>
-    <button @click="createRank">작성</button>
-    <p class="text-left">댓글 {{ movie.movierank_count }}개</p>
-    <MovieRankListItem v-for="movierank in movie.movierank" :key="movierank.id"/>
+    <div>
+      <div class="text-right">
+        <label for="rank">평점 : </label>
+        <input if="rank" type="number" min="0" max="10" v-model="rankData.rank"/><br>
+
+        
+      </div>
+      <div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">한줄평</span>
+          </div>
+          <textarea class="form-control" id="content" aria-label="With textarea" v-model="rankData.content"></textarea>
+        </div>
+      </div>
+      <button @click="createRank" class="btn btn-primary mt-2">작성</button>
+    </div>
+
+    <div>
+      <div class="d-flex">
+        <p class="text-left mb-0">한줄평</p>
+        <span class="mx-3"> | </span>
+        <p class="mb-0">총 : {{ movie.movierank_count }}개</p>
+      </div>
+      <hr class="my-1">
+
+      <MovieRankListItem v-for="movierank in movie.movierank" :key="movierank.id" :movierank="movierank"/>
+    </div>
   </div>
 </template>
+
+
 
 <script>
 import MovieRankListItem from '@/components/MovieRankListItem.vue'
@@ -60,5 +82,4 @@ export default {
 </script>
 
 <style>
-
 </style>

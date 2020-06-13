@@ -117,4 +117,8 @@ export default {
   .hover-item:hover {
     color: #ffffff
   }
+  #app {
+    background-image: linear-gradient(rgba(0,0,0,.85) 15%,rgba(0,0,0,.2) 40%,#000 90%);
+    background-attachment: scroll
+  }
 </style>

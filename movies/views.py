@@ -33,8 +33,7 @@ def MovieDetail(request,movie_id):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def CommentCreate(request,movie_id):
-    
+def CommentCreate(request,movie_id):    
     serializer = MovieRankSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie_id=movie_id,user=request.user)

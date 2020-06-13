@@ -29,3 +29,13 @@ def MovieDetail(request,movie_id):
         movie = Movie.objects.filter(id=movie_id)
         serializer = MovieDetailSerializer(movie,many=True)
         return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def CommentCreate(request,movie_id):
+    
+    serializer = MovieRankSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(movie_id=movie_id,user=request.user)
+        return Response(serializer.data)

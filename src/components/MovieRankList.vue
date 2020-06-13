@@ -2,11 +2,9 @@
   <div class="pt-3 px-5 mb-2 bg-light text-dark">
 
     <div>
-      <div class="text-right">
-        <label for="rank">평점 : </label>
-        <input if="rank" type="number" min="0" max="10" v-model="rankData.rank"/><br>
-
-        
+      <div class="d-flex float-right align-items-center">
+        <span class="mr-2">평점 : {{rankData.rank*2}} 점</span>
+        <star-rating :increment="0.5" v-model="rankData.rank" :star-size="30" :show-rating="false"></star-rating>
       </div>
       <div>
         <div class="input-group">
@@ -44,9 +42,10 @@ export default {
   name: 'MovieRankList',
   data() {
     return {
+      rating: null,
       rankData: {
         'content': '',
-        'rank': 5
+        'rank': 3
       }
     }
   },
@@ -60,6 +59,11 @@ export default {
   },
   methods: {
     createRank() {
+      if(!this.$cookies.isKey('auth-token')) {
+        this.$router.push({ name: 'Login'})
+      }
+      this.rankData.rank = this.rankData.rank*2
+      console.log(typeof(this.rank))
       const request_header = {
         headers: {
           'Authorization': `Token ${this.$cookies.get('auth-token')}`
@@ -69,7 +73,6 @@ export default {
         .then((res)=>{
           console.log(res)
           console.log(this.movie.id)
-
           // 현재 새로고침
           this.$router.go()
         })

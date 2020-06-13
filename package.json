@@ -12,7 +12,9 @@
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-cookies": "^1.7.0",
+    "vue-dynamic-star-rating": "^1.0.8",
     "vue-router": "^3.2.0",
+    "vue-star-rating": "^1.6.1",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
@@ -23,7 +25,10 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0"
   },
   "eslintConfig": {
     "root": true,

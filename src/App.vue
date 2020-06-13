@@ -4,8 +4,11 @@
     <header class="masthead mb-auto">
       <div class="inner">
         <h3 class="masthead-brand">MMM</h3>
+        <nav class="nav nav-masthead float-left ml-3">
+          <router-link to="/" class="nav-link hover-item " :class="{active : isactive.MovieList}">Home</router-link>
+          <router-link to="/community" class="nav-link hover-item " :class="{active : isactive.CommunityView}">커뮤니티</router-link>
+        </nav>
         <nav class="nav nav-masthead justify-content-center">
-          <router-link to="/" class="nav-link hover-item" :class="{active : isactive.MovieList}">목록으로</router-link>
           <router-link v-show="!isLogined" to="/login" class="nav-link hover-item" :class="{active : isactive.LoginView}">Login</router-link>
           <router-link v-show="!isLogined" to="/signup" class="nav-link hover-item" :class="{active : isactive.SignupView}">Signup</router-link>
           <router-link v-show="isLogined" to="/logout" class="nav-link hover-item" :class="{active : isactive.LogoutView}">로그아웃</router-link>
@@ -41,6 +44,7 @@ export default {
         'LoginView' : false,
         'SignupView' : false,
         'LogoutView' : false,
+        'CommunityView' : false,
       }
       
     }
@@ -54,7 +58,7 @@ export default {
       axios.post(API_URL + '/rest-auth/login/', loginData)
         .then((res)=>{
           this.cookies_set(res.data.key)
-          this.$router.push('/articles')
+          this.$router.back()
         })
         .catch((err)=>{
           console.log(err.response)
@@ -67,11 +71,10 @@ export default {
         }
       }
       axios.post(API_URL + '/rest-auth/logout/', null, request_header)
-        .then((res)=>{
-          console.log(res)
+        .then(()=>{
           this.isLogined = false
           this.$cookies.remove('auth-token')
-          this.$router.push('/articles')
+          this.$router.back()
         })
         .catch((err)=>{
           console.log(err.response)
@@ -81,7 +84,7 @@ export default {
       axios.post(API_URL + '/rest-auth/signup/', signupData)
         .then((res)=>{
           this.cookies_set(res.data.key)
-          this.$router.push('/articles')
+          this.$router.back()
         })
         .catch((err)=>{
           console.log(err.response)

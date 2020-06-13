@@ -5,6 +5,7 @@ import SignupView from '@/views/accounts/SignupView.vue'
 import LogoutView from '@/views/accounts/LogoutView.vue'
 import MovieList from '@/views/movies/MovieView.vue'
 import MovieDetail from '@/views/movies/MovieDetail.vue'
+import CommunityView from '@/views/community/CommunityView.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ Vue.use(VueRouter)
     name: 'MovieDetail',
     component: MovieDetail
   },
+  {
+    path: '/community',
+    name: 'CommunityView',
+    component: CommunityView
+  },
   
 ]
 
@@ -44,7 +50,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['MovieList', 'LoginView', 'SignupView', 'MovieDetail']  // Login 안해도 됨
+  const publicPages = ['MovieList', 'LoginView', 'SignupView', 'MovieDetail', 'CommunityView']  // Login 안해도 됨
   const authPages = ['LoginView', 'SignupView']  // Login 되어있으면 안됨
   
   const authRequired = !publicPages.includes(to.name)  // 로그인 해야 함.

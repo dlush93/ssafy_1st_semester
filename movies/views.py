@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.pagination import PageNumberPagination
 
-
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
@@ -25,7 +24,6 @@ def index(request):
 
 def MovieDetail(request,movie_id):
     if request.method == 'GET':
-        print(request.user.is_superuser)
         movie = Movie.objects.filter(id=movie_id)
         serializer = MovieDetailSerializer(movie,many=True)
         return Response(serializer.data)

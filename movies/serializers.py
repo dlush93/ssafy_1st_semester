@@ -25,6 +25,7 @@ class MovieRankSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieRank
         fields = '__all__'
+        read_only = 'created_at'
 
     # def to_representation(self, instance):
     #     response = super().to_representation(instance)

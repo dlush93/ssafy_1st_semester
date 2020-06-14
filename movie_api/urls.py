@@ -18,10 +18,10 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-
+    path('accounts/',include('accounts.urls')),
 
     path('api/v1/movies/', include('movies.urls')),
+    path('api/v1/community/',include('community.urls')),
     #### django rest-auth 로그인 로그아웃 
     path('rest-auth/', include('rest_auth.urls')),
     #### django rest-allauth 회원가입

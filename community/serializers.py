@@ -15,6 +15,17 @@ class ArticleListSerializer(serializers.ModelSerializer):
         model = Article
         fields = '__all__'
 
+class ArticleShow_in_Community_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        exclude = ['community']
+
+class CommunityListSerializer(serializers.ModelSerializer):
+    article = ArticleShow_in_Community_Serializer(many=True)
+    class Meta:
+        model = Community
+        fields = '__all__'
+
 
 class ArticleSerializer(serializers.ModelSerializer):
     community = CommunitySerializer(required=False)

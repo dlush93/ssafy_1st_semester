@@ -12,6 +12,8 @@ urlpatterns = [
     path('articles/',views.articlelist),
     ### 특정게시글 조회,수정,삭제
     path('articles/<int:article_id>/',views.articledetail),
+    ### 특정게시글 수정,삭제
+    path('articleslist/<int:article_id>/',views.articlefunc),
     ### 해당 게시글을 좋아하는 유저들의 목록을 보여주는거
     path('like_users/<int:article_id>',views.likeusersList),
     ### 좋아요 하는 요청주소

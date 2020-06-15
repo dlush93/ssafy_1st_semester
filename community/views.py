@@ -41,22 +41,15 @@ def List(request):
     community = Community.objects.all()
     serializers = CommunitySerializer(community,many=True)
     return Response(serializers.data)
-
-
-
-
-@api_view(['GET','PUT','DELETE'])
+@api_view(['PUT','DELETE'])
 @permission_classes([IsAuthenticated])
-def articledetail(request,article_id):
+def articlefunc(request,article_id):
     try:
         article = Article.objects.get(id=article_id)
     except:
         return Response({'message':'해당페이지가 없습니다.'},status=status.HTTP_404_NOT_FOUND)
     if request.user == article.user:
-        if request.method == 'GET':
-            serializer = ArticleListSerializer(article)
-            return Response(serializer.data)
-        elif request.method == 'PUT':
+        if request.method == 'PUT':
             serializer = ArticleSerializer(article,data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
@@ -67,6 +60,18 @@ def articledetail(request,article_id):
     else:
         return Response({'message':'허락된 사용자가 아닙니다.'},status=status.HTTP_403_FORBIDDEN)
 
+@api_view(['GET'])
+def articledetail(request,article_id):
+    try:
+        article = Article.objects.get(id=article_id)
+    except:
+        return Response({'message':'해당페이지가 없습니다.'},status=status.HTTP_404_NOT_FOUND)
+    if request.user == article.user:
+        if request.method == 'GET':
+            serializer = ArticleListSerializer(article)
+            return Response(serializer.data)
+
+            
 @api_view(['GET'])
 def likeusersList(request,article_id):
     article = Article.objects.get(id=article_id)

@@ -40,10 +40,10 @@ def like_article(reqeust,username):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def user(reqeust,username):
+def user(request):
     User = get_user_model()
     try:
-        user_info = User.objects.get(username=username)
+        user_info = User.objects.get(username = request.user.username)
     except:
         return Response({'message':'없는 사용자입니다.'})
     serializer = UserGradeSerializer(user_info)

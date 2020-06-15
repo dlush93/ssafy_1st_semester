@@ -9,11 +9,11 @@
           <span v-for="genre in movie.genres" :key="genre.id" class="genre-list mr-3">{{ genre.name }}</span>
           <div id="meta-table" class="row mt-3">
             <div class="col-6">
-              <p>영화점수</p>
+              <p>출시일</p>
               <span class="meta-data">{{ movie.release_date }}</span>
             </div>
             <div class="col-6">
-              <p>출시일</p>
+              <p>영화점수</p>
               <span class="meta-data">{{ movie.popularity }}</span>
             </div>
             <div class="col-12 my-3"></div>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import MovieRankList from '@/components/MovieRankList.vue'
+import MovieRankList from '@/components/movies/MovieRankList.vue'
 import axios from 'axios'
 
 const MAIN_URL = 'https://image.tmdb.org/t/p/original'

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import MovieList from '@/components/MovieList.vue'
+import MovieList from '@/components/movies/MovieList.vue'
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000/api/v1/movies'

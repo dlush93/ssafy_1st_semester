@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="item">
     <img :src="IMG_URL" alt="" width="100%" @click="movieClick">
     <p>{{ movie.title }}</p>
   </div>

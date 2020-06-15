@@ -1,9 +1,8 @@
 <template>
 
-  <div id="app" class="d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead mb-auto">
+  <div id="app" class="d-flex w-100 h-100 mx-auto flex-column">
+    <header class="masthead m-3">
       <div class="inner" style="height=100%">
-        
         <img src="./assets/Logo.png" alt="로고"  class="masthead-brand" height="50px">
         <nav class="nav nav-masthead float-left ml-3">
           <router-link to="/" class="nav-link hover-item " :class="{active : isactive.MovieList}">Home</router-link>
@@ -17,7 +16,7 @@
       </div>
     </header>
 
-    <main role="main" class="inner cover" :class="{container : !isactive.MovieList}">
+    <main role="main" class="inner h-100">
       <router-view @submit-login="login" @submit-signup="signup" @submit-logout="logout"/>
     </main>
 
@@ -123,6 +122,7 @@ export default {
   }
   #app {
     background-image: linear-gradient(rgba(0,0,0,.85) 15%,rgba(0,0,0,.2) 40%,#000 90%);
-    background-attachment: scroll
+    background-attachment: scroll;
+    padding: 0px;
   }
 </style>

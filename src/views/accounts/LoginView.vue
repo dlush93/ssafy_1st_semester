@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Login</h1>
     <div class="form-group">
     <label for="InputUsername1">아이디</label>

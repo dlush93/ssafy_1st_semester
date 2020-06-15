@@ -3,15 +3,15 @@
 
     <div>
       <div class="d-flex float-right align-items-center mb-2">
-        <span class="mr-2">평점 : {{rankData.rank*2}} 점</span>
-        <star-rating :increment="0.5" v-model="rankData.rank" :star-size="30" :show-rating="false"></star-rating>
+        <span class="mr-2">평점 : {{rank*2}} 점</span>
+        <star-rating :increment="0.5" v-model="rank" :star-size="30" :show-rating="false"></star-rating>
       </div>
       <div>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">한줄평</span>
           </div>
-          <textarea class="form-control" id="content" aria-label="With textarea" v-model="rankData.content"></textarea>
+          <textarea class="form-control" id="content" aria-label="With textarea" v-model="content"></textarea>
         </div>
       </div>
       <button @click="createRank" class="btn btn-primary mt-2">작성</button>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import MovieRankListItem from '@/components/MovieRankListItem.vue'
+import MovieRankListItem from '@/components/movies/MovieRankListItem.vue'
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000/api/v1/movies/'
@@ -41,10 +41,8 @@ export default {
   data() {
     return {
       rating: null,
-      rankData: {
-        'content': '',
-        'rank': 3
-      }
+      rank: 3,
+      content: ''
     }
   },
   props: {
@@ -60,22 +58,19 @@ export default {
       if(!this.$cookies.isKey('auth-token')) {
         this.$router.push({ name: 'Login'})
       }
-      this.rankData.rank = this.rankData.rank*2
-      // console.log(typeof(this.rank))
       const request_header = {
         headers: {
           'Authorization': `Token ${this.$cookies.get('auth-token')}`
         }
       }
-      axios.post(API_URL + this.movie.id + '/comments/', this.rankData, request_header)
+      axios.post(API_URL + this.movie.id + '/comments/', {rank: this.rank*2, content: this.content}, request_header)
         .then(()=>{
-          
-          // 현재 새로고침
           this.$router.go()
         })
         .catch((err)=>{
           console.log(err.response)
         })
+
     },
   },
 }

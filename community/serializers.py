@@ -8,25 +8,19 @@ class CommunitySerializer(serializers.ModelSerializer):
         model = Community
         fields = '__all__'
 
+
+
+
+## 간략화 된 아티클 정보 불러오는 용도
 class ArticleListSerializer(serializers.ModelSerializer):
-    community = CommunitySerializer(required=False)
     user = UserSerializer(required=False)
     class Meta:
         model = Article
         fields = '__all__'
 
-class ArticleShow_in_Community_Serializer(serializers.ModelSerializer):
-    class Meta:
-        model = Article
-        exclude = ['community']
-
-class CommunityListSerializer(serializers.ModelSerializer):
-    article = ArticleShow_in_Community_Serializer(many=True)
-    class Meta:
-        model = Community
-        fields = '__all__'
 
 
+### article을 생성하기 위해 쓰는 용도
 class ArticleSerializer(serializers.ModelSerializer):
     community = CommunitySerializer(required=False)
     user = UserSerializer(required=False)
@@ -34,3 +28,17 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         exclude = ['like_users',]
         read_only = ('created_at','updated_at')
+
+
+class LikeUserSerializer(serializers.ModelSerializer):
+    like_users = UserSerializer(many=True)
+    class Meta:
+        model = Article
+        fields = ['id','title','like_users']
+        read_only = ('created_at','updated_at')
+
+
+class LikeArticleListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        exclude = ['user','content','community']

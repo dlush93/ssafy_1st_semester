@@ -7,3 +7,4 @@ from django.conf import settings
 
 class User(AbstractUser):
     followers= models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='followings')
+    grade = models.IntegerField(default=0)

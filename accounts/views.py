@@ -36,3 +36,15 @@ def like_article(reqeust,username):
     liked_user = User.objects.get(username=username).like_articles.all()
     serializer = LikeArticleListSerializer(liked_user,many=True)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def user(reqeust,username):
+    User = get_user_model()
+    try:
+        user_info = User.objects.get(username=username)
+    except:
+        return Response({'message':'없는 사용자입니다.'})
+    serializer = UserGradeSerializer(user_info)
+    return Response(serializer.data)

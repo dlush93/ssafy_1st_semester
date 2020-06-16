@@ -1,9 +1,9 @@
 <template>
   <div class="bg-light text-dark w-100 h-100 m-0" style="height:100rm;">
 
-    <div>
+    <div class="d-flex justify-content-center">
       <h1>{{ community.name }}</h1>
-      <button data-toggle="modal" :data-target="'#Modal'">글쓰기</button>
+      <button data-toggle="modal" :data-target="'#Modal'" class="btn btn-outline-primary justify-content-end">글쓰기</button>
     </div>
     
     <ArticleCreateModal :communityid="community.id" @createArticle="getArticles(community.id)"/>
@@ -13,8 +13,8 @@
         <div class="MenuLeft col-2">
           <p class="mb-4 text-light menu text-center p-1" >커뮤니티 게시판</p>
           <ul class="px-4">
-            <router-link v-for="community in communityList" :key="community.id" to="/community" class="menu-item">{{ community.name }}</router-link>
-            <!-- <li v-for="community in communityList" :key="community.id" class="menu-item" @click="setCommnuity(community)">{{ community.name }}</li> -->
+            <!-- <router-link v-for="community in communityList" :key="community.id" :to="`/community/${community.id}`" class="menu-item">{{ community.name }}</router-link> -->
+            <li v-for="community in communityList" :key="community.id" class="menu-item" @click="setCommnuity(community)">{{ community.name }}</li>
           </ul>
         </div>
 
@@ -61,9 +61,13 @@ export default {
         })
     },
     setCommnuity(community) {
+      this.$router.push({ path:'/community', params: {community}},this.test,this.test)
       this.community = community
       this.getArticles(this.community.id)
     },
+    test() {
+      console.log('!!')
+    }
   },
   created() {
     this.getCommunityList()
@@ -71,7 +75,7 @@ export default {
   },
   updata() {
     this.getArticles(this.community.id)
-  }
+  },
 }
 
 </script>

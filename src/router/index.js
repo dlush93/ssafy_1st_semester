@@ -45,11 +45,11 @@ Vue.use(VueRouter)
     component: CommunityView,
     children: [
       { path: '', component: ArticleList },
-      { path: 'detail', component: ArticleDetail },
+      { path: 'detail',name:'ArticleDetail', component: ArticleDetail },
     ]
   },
   {
-    path: '/moive/:username',
+    path: '/accounts/:username',
     name: 'UserProfileView',
     component: UserProfileView
   },
@@ -78,7 +78,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
-
 })
+
 
 export default router

@@ -14,6 +14,10 @@ class CommunitySerializer(serializers.ModelSerializer):
 ## 간략화 된 아티클 정보 불러오는 용도
 class ArticleListSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=False)
+    like_users_count =serializers.SerializerMethodField(read_only=True)
+    def get_like_users_count(self,article):
+        return article.like_users.count()
+
     class Meta:
         model = Article
         fields = '__all__'

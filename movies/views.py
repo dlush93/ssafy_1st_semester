@@ -12,12 +12,14 @@ from rest_framework.permissions import IsAuthenticated
 @api_view(['GET'])
 def index(request):
     if request.method == 'GET':
-        movies = Movie.objects.all()
-        paginator = PageNumberPagination()
-        paginator.page_size = 10
-        result_page = paginator.paginate_queryset(movies,request)
-        serializer = MovieListSerializer(result_page, many=True)
-        return paginator.get_paginated_response(serializer.data)
+        movies = Movie.objects.order_by('-popularity')[0:9]
+        print(movies)
+        # paginator = PageNumberPagination()
+        # paginator.page_size = 10
+        # result_page = paginator.paginate_queryset(movies,request)
+        # return paginator.get_paginated_response(serializer.data)
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -30,11 +32,14 @@ def MovieDetail(request,movie_id):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def CommentCreate(request,movie_id):    
+def CommentCreate(request,movie_id):
+    print(f'reqeuset.data:{request.data},request.POST:{request.POST}')    
+
     serializer = MovieRankSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie_id=movie_id,user=request.user)
         return Response(serializer.data)
+
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])

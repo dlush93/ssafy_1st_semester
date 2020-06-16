@@ -9,4 +9,6 @@ urlpatterns = [
     path('like_article/<username>/',views.like_article),
     #### 회원 등급 가져오기
     path('',views.user),
+    ### 해당회원의 작성글
+    path('articles/<username>/',views.user_article)
 ]

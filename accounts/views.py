@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from .serializers import FollowerSerializer,UserGradeSerializer
-from community.serializers import LikeArticleListSerializer
+from community.serializers import LikeArticleListSerializer,ArticleListSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
@@ -48,3 +48,10 @@ def user(request):
         return Response({'message':'없는 사용자입니다.'})
     serializer = UserGradeSerializer(user_info)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def user_article(reqeust,username):
+    User = get_user_model()
+    target_articles = User.objects.get(username = username).article.all()
+    serializers = ArticleListSerializer(target_articles,many=True)
+    return Response(serializers.data)

@@ -28,7 +28,8 @@ def communityList(request,community_id):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def articlecreate(request,community_id):
-    if community_id == request.user.grade:
+    community_rank = Community.objects.get(id=community_id).rank
+    if community_rank == request.user.grade:
         serializer = ArticleSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(community_id=community_id,user=request.user)
@@ -41,6 +42,7 @@ def List(request):
     community = Community.objects.all()
     serializers = CommunitySerializer(community,many=True)
     return Response(serializers.data)
+
 @api_view(['PUT','DELETE'])
 @permission_classes([IsAuthenticated])
 def articlefunc(request,article_id):

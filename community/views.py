@@ -56,7 +56,8 @@ def articlefunc(request,article_id):
                 return Response(serializer.data)
         elif request.method == 'DELETE':
             article.delete()
-            return Response({'message':'성공적으로 삭제되었습니다.'},status=status.HTTP_204_NO_CONTENT)
+            return Response({ 'isStatus' : 'true',
+                                'message':'성공적으로 삭제되었습니다.'},status=status.HTTP_204_NO_CONTENT)
     else:
         return Response({'message':'허락된 사용자가 아닙니다.'},status=status.HTTP_403_FORBIDDEN)
 

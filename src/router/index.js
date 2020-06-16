@@ -10,7 +10,9 @@ import CommunityView from '@/views/community/CommunityView.vue'
 
 import ArticleDetail from '@/components/communitys/ArticleDetail.vue'
 import ArticleList from '@/components/communitys/ArticleList.vue'
-
+import UserArticleList from '@/views/accounts/UserArticleList.vue'
+import axios from 'axios'
+import cookies from 'vue-cookies'
 Vue.use(VueRouter)
 
   const routes = [
@@ -51,8 +53,35 @@ Vue.use(VueRouter)
   {
     path: '/accounts/:username',
     name: 'UserProfileView',
-    component: UserProfileView
-  },
+    component: UserProfileView,
+    children : [
+      { path : 'article', 
+      component: UserArticleList},
+    ],
+
+    beforeEnter:(to,from,next)=>{
+      const request_header = {
+        headers: {
+          'Authorization': `Token ${cookies.get('auth-token')}`
+        }
+      }
+        if(cookies.isKey('auth-token')) {
+          axios.post('http://127.0.0.1:8000/accounts/',null,request_header)
+            .then((res)=> {
+              if (res.data.username === to.params.username){
+                next()
+              } else{
+                next('/')
+              }
+               
+            })
+        }
+      
+
+      console.log(from)
+    }
+  }
+  
 
 ]
 

@@ -41,7 +41,7 @@ export default {
     GetMovie() {
       axios.get(API_URL)
         .then((res)=>{
-          this.movies = res.data.results
+          this.movies = res.data
         })
     }
   },

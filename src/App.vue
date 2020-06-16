@@ -12,6 +12,7 @@
           <p v-show="!isLogined">{{ username }}</p>
           <router-link v-show="!isLogined" to="/login" class="nav-link hover-item" :class="{active : isactive.LoginView}">Login</router-link>
           <router-link v-show="!isLogined" to="/signup" class="nav-link hover-item" :class="{active : isactive.SignupView}">Signup</router-link>
+          <router-link v-show="isLogined" :to="{name:'UserProfileView',params:{username:username}}" class="nav-link hover-item" :class="{active : isactive.UserProfileView}">{{username}}</router-link>
           <router-link v-show="isLogined" to="/logout" class="nav-link hover-item" :class="{active : isactive.LogoutView}">로그아웃</router-link>
         </nav>
       </div>
@@ -47,6 +48,7 @@ export default {
         'SignupView' : false,
         'LogoutView' : false,
         'CommunityView' : false,
+        'UserProfileView' : false,
       }
       
     }
@@ -102,7 +104,7 @@ export default {
         this.isLogined = true
         axios.post('http://127.0.0.1:8000/accounts/',null,request_header)
           .then((res)=> {
-            this.username = res.username
+            this.username = res.data.username
           })
       }
     },

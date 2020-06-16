@@ -8,7 +8,8 @@ urlpatterns = [
     #### MOVIE에 평점 만드는 곳
     path('<int:movie_id>/comments/',views.CommentCreate),
     #### Movie에 평점 삭제하는 곳
-    path('comments/<int:comment_id>/',views.CommentDelete)
+    path('comments/<int:comment_id>/',views.CommentDelete),
+    path('genre_movie/<int:genre_id>',views.genremovierecommand)
 ]
 
 

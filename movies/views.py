@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 def index(request):
     if request.method == 'GET':
         movies = Movie.objects.order_by('-popularity')[0:9]
-        print(movies)
+        # movies = Movie.object.all()
         # paginator = PageNumberPagination()
         # paginator.page_size = 10
         # result_page = paginator.paginate_queryset(movies,request)
@@ -57,3 +57,9 @@ def CommentDelete(request,comment_id):
             return Response({'message': '잘못된 접근입니다.'})
     else:
         return Response({'message':'허락된 사용자가 아닙니다.'},status=status.HTTP_403_FORBIDDEN)
+
+@api_view(['GET'])
+def genremovierecommand(request,genre_id):
+    movies = Genre.objects.get(id=genre_id).movies.order_by('-popularity')[:10]
+    serializers = MovieListSerializer(movies,many=True)
+    return Response(serializers.data)

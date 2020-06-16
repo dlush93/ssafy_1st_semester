@@ -11,13 +11,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="article in articles" :key="article.id" @click="articleItemClick(article.id)">
-          <th>{{ article.id }}</th>
-          <th>{{ article.title }}</th>
-          <th>{{ article.user.username }}</th>
-          <th>{{ article.created_at | moment('YYYY-MM-DD HH:mm:ss') }}</th>
-          <th></th>
-        </tr>
+          <tr v-for="article in articles" :key="article.id" @click="articleItemClick(article.id)">
+            <th>{{ article.id }}</th>
+            <th>{{ article.title }}</th>
+            <th>{{ article.user.username }}</th>
+            <th>{{ article.created_at | moment('YYYY-MM-DD HH:mm:ss') }}</th>
+            <th></th>
+          </tr>
       </tbody>
     </table>
   </div>
@@ -32,8 +32,8 @@ export default {
     }
   },
   methods: {
-    articleItemClick(id) {
-      console.log(id)
+    articleItemClick(article_id) {
+      this.$router.push({ path: 'community/detail', params: {id: article_id }})
     }
   }
 }

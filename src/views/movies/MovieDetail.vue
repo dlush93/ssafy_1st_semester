@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="card border-dark col-12 movie">
       <div class="row">
         <img :src="IMG_URL" class="card-img-top col-4 p-0" alt="...">

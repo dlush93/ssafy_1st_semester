@@ -9,6 +9,7 @@
           <router-link to="/community" class="nav-link hover-item " :class="{active : isactive.CommunityView}">커뮤니티</router-link>
         </nav>
         <nav class="nav nav-masthead justify-content-center">
+          <p v-show="!isLogined">{{ username }}</p>
           <router-link v-show="!isLogined" to="/login" class="nav-link hover-item" :class="{active : isactive.LoginView}">Login</router-link>
           <router-link v-show="!isLogined" to="/signup" class="nav-link hover-item" :class="{active : isactive.SignupView}">Signup</router-link>
           <router-link v-show="isLogined" to="/logout" class="nav-link hover-item" :class="{active : isactive.LogoutView}">로그아웃</router-link>
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       isLogined: false,
+      username: '',
       isactive : {
         'MovieList' : false,
         'LoginView' : false,
@@ -91,8 +93,17 @@ export default {
         })
     },
     logincheck() {
+      const request_header = {
+        headers: {
+          'Authorization': `Token ${this.$cookies.get('auth-token')}`
+        }
+      }
       if(this.$cookies.isKey('auth-token')) {
         this.isLogined = true
+        axios.post('http://127.0.0.1:8000/accounts/',null,request_header)
+          .then((res)=> {
+            this.username = res.username
+          })
       }
     },
     routercheck(){

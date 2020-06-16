@@ -2,23 +2,24 @@
   <div class="bg-light text-dark w-100 h-100 m-0" style="height:100rm;">
 
     <div>
-      <h1>Community</h1>
+      <h1>{{ community.name }}</h1>
       <button data-toggle="modal" :data-target="'#Modal'">글쓰기</button>
     </div>
     
-    <ArticleCreateModal :communityid="communityid" @createArticle="getArticles(communityid)"/>
+    <ArticleCreateModal :communityid="community.id" @createArticle="getArticles(community.id)"/>
 
     <div class="container">
       <div class="row">
         <div class="MenuLeft col-2">
           <p class="mb-4 text-light menu text-center p-1" >커뮤니티 게시판</p>
           <ul class="px-4">
-            <li v-for="community in communityList" :key="community.id" class="menu-item" @click="setCommnuity(community.id)">{{ community.name }}</li>
+            <router-link v-for="community in communityList" :key="community.id" to="/community" class="menu-item">{{ community.name }}</router-link>
+            <!-- <li v-for="community in communityList" :key="community.id" class="menu-item" @click="setCommnuity(community)">{{ community.name }}</li> -->
           </ul>
         </div>
 
         <div class="px-5 col-10">
-          <ArticleList :articles="articles"/>
+          <router-view :articles="articles"></router-view>
         </div>
       </div>
     </div>
@@ -27,7 +28,6 @@
 
 <script>
 import ArticleCreateModal from '@/components/communitys/ArticleCreateModal.vue'
-import ArticleList from '@/components/communitys/ArticleList.vue'
 import Axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000/api/v1/community/'
@@ -37,13 +37,15 @@ export default {
   data() {
     return {
       articles: null,
-      communityid: 1,
+      community: {
+        name: '등업게시판',
+        id: 1
+      },
       communityList: [],
     }
   },
   components: {
     ArticleCreateModal,
-    ArticleList,
   },
   methods: {
     getCommunityList() {
@@ -58,17 +60,17 @@ export default {
           this.articles = res.data
         })
     },
-    setCommnuity(id) {
-      this.communityid = id
-      this.getArticles(this.communityid)
+    setCommnuity(community) {
+      this.community = community
+      this.getArticles(this.community.id)
     },
   },
   created() {
     this.getCommunityList()
-    this.getArticles(this.communityid)
+    this.getArticles(this.community.id)
   },
   updata() {
-    this.getArticles(this.communityid)
+    this.getArticles(this.community.id)
   }
 }
 
@@ -88,6 +90,7 @@ export default {
     padding-bottom: 370px;
   }
   .menu-item {
+    display: block;
     padding: 0px 0px 0px 10px;
     color: #7a96a7;
     border-bottom: 1px solid #384a56;

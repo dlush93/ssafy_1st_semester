@@ -34,6 +34,7 @@ export default {
   name: 'ArticleCreateModal',
   data() {
     return {
+      user: null,
       articleData: {
         title: '',
         content: ''
@@ -49,16 +50,21 @@ export default {
     createArticle() {
       const request_header = {
         headers: {
-          'Authorization': `Token ${this.$cookies.get('auth-token')}`
+          'Authorization': `Token ${this.$cookies.get('auth-token')}`,
         }
       }
-      axios.post(API_URL+this.communityid+'/articles', this.articleData, request_header)
-        .then(()=>{
+      axios.post(API_URL+this.communityid+'/articles/', this.articleData, request_header)
+        .then((res)=>{
+          if(res.data.message) {
+            alert(res.data.message)
+          }
           this.$emit('createArticle')
           this.articleData.title = ''
           this.articleData.content = ''
         })
-    }
+    },
+  },
+  created() {
   }
 }
 </script>

@@ -124,6 +124,7 @@ export default {
   },
   updated(){
     this.routercheck()
+    this.logincheck()
   }
 }
 </script>

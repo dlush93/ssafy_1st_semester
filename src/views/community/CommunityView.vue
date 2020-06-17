@@ -1,9 +1,13 @@
 <template>
+<div class="container h-100 mt-5 maindiv">
   <div class="bg-light text-dark w-100 h-100 m-0" style="height:100rm;">
 
-    <div class="d-flex justify-content-center">
+    <div class="pt-4">
       <h1>{{ community.name }}</h1>
-      <button data-toggle="modal" :data-target="'#Modal'" class="btn btn-outline-primary justify-content-end">글쓰기</button>
+      <div class="d-flex justify-content-end px-5">
+        <button data-toggle="modal" :data-target="'#Modal'" class="btn btn-outline-primary">글쓰기</button>
+
+      </div>
     </div>
     
     <ArticleCreateModal :communityid="community.id" @createArticle="getArticles(community.id)"/>
@@ -24,6 +28,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -100,5 +105,8 @@ export default {
     border-bottom: 1px solid #384a56;
     line-height: 30px;
     list-style-type: none;
+  }
+  #main-body {
+    background-image: url('../../assets/background.jpg');
   }
 </style> 

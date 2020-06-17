@@ -17,17 +17,17 @@
       </div>
       
       <nav class="blog-pagination mbt-5">
-        <p class="btn btn-outline-primary"> 추 천 </p>
-        <p class="btn btn-outline-secondary disabled"> 0000명</p>
+        <p class="btn btn-outline-primary" @cilck="like"> 추 천 </p>
+        <p class="btn btn-outline-secondary disabled"> {{ article.like_users_count }}명</p>
       </nav>
     </div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
-// const API_URL = 'http://127.0.0.1:8000/api/v1/community/articles/'
+const LIKE_URL = 'http://127.0.0.1:8000/api/v1/community/like/'
 
 export default {
   name: 'ArticleDetail',
@@ -37,6 +37,17 @@ export default {
     }
   },
   methods: {
+    like() {
+      const request_header = {
+        headers: {
+          'Authorization': `Token ${this.$cookies.get('auth-token')}`,
+        }
+      }
+      axios.post(LIKE_URL+this.article.id,null,request_header)
+        .then((res)=>{
+          console.log(res.data)
+        })
+    }
   },
 }
 </script>

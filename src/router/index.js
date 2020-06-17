@@ -3,14 +3,17 @@ import VueRouter from 'vue-router'
 import LoginView from '@/views/accounts/LoginView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
 import LogoutView from '@/views/accounts/LogoutView.vue'
-import UserProfileView from '@/views/accounts/UserProfileView.vue'
 import MovieList from '@/views/movies/MovieView.vue'
 import MovieDetail from '@/views/movies/MovieDetail.vue'
 import CommunityView from '@/views/community/CommunityView.vue'
 
+import UserProfileView from '@/views/accounts/profile/UserProfileView.vue'
+import UserArticleList from '@/views/accounts/profile/UserArticleList.vue'
+import UserLikeArticleList from '@/views/accounts/profile/UserLikeArticleList.vue'
+import RankedMovieList from '@/views/accounts/profile/RankedMovieList.vue'
+
 import ArticleDetail from '@/components/communitys/ArticleDetail.vue'
 import ArticleList from '@/components/communitys/ArticleList.vue'
-import UserArticleList from '@/views/accounts/UserArticleList.vue'
 import axios from 'axios'
 import cookies from 'vue-cookies'
 Vue.use(VueRouter)
@@ -55,8 +58,9 @@ Vue.use(VueRouter)
     name: 'UserProfileView',
     component: UserProfileView,
     children : [
-      { path : 'article', 
-      component: UserArticleList},
+      { path : 'article', component: UserArticleList},
+      {path : 'likearticle',  component : UserLikeArticleList},
+      {path : 'rankedmovie', component : RankedMovieList}
     ],
 
     beforeEnter:(to,from,next)=>{

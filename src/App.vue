@@ -9,7 +9,6 @@
           <router-link to="/community" class="nav-link hover-item " :class="{active : isactive.CommunityView}">커뮤니티</router-link>
         </nav>
         <nav class="nav nav-masthead justify-content-center">
-          <p v-show="!isLogined">{{ username }}</p>
           <router-link v-show="!isLogined" to="/login" class="nav-link hover-item" :class="{active : isactive.LoginView}">Login</router-link>
           <router-link v-show="!isLogined" to="/signup" class="nav-link hover-item" :class="{active : isactive.SignupView}">Signup</router-link>
           <router-link v-show="isLogined" :to="{name:'UserProfileView',params:{username:username}}" class="nav-link hover-item" :class="{active : isactive.UserProfileView}">{{username}}</router-link>
@@ -18,7 +17,7 @@
       </div>
     </header>
 
-    <main role="main" class="inner h-100">
+    <main role="main" class="inner">
       <router-view @submit-login="login" @submit-signup="signup" @submit-logout="logout"/>
     </main>
 
@@ -110,7 +109,6 @@ export default {
     },
     routercheck(){
       for (var element in this.isactive){
-        console.log(this.$router.currentRoute.name)
         if (element == this.$router.currentRoute.name){
           this.isactive[element] = true
         } else{

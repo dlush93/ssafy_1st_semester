@@ -1,5 +1,5 @@
 <template>
-  <div class="row contanin">
+  <div class="row contanin justify-content-center">
     <MovieListItem v-for="movie in movies" :key='movie.id' :movie='movie' class="col-1 p-1 item"/>
 
   </div>

@@ -15,7 +15,7 @@
             <th>{{ article.id }}</th>
             <th>{{ article.title }}</th>
             <th>{{ article.user.username }}</th>
-            <th>{{ article.created_at | moment('YYYY-MM-DD HH:mm:ss') }}</th>
+            <th>{{ article.created_at | moment('YYYY-MM-DD HH:mm') }}</th>
             <th>{{ article.like_users_count }}</th>
           </tr>
       </tbody>

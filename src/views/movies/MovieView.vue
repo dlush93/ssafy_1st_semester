@@ -1,39 +1,34 @@
 <template>
-  <div class="col-12">
+  <div class="col-12 ">
     <div id="back" class="container">
-	
-    <h1>Movie Site</h1>
+      <h1>Movie Site</h1>
 
-    <div class="bird-container bird-container--one">
-        <div class="bird bird--one"></div>
-    </div>
-
-    <div class="bird-container bird-container--two">
-        <div class="bird bird--two"></div>
-    </div>
-
-    <div class="bird-container bird-container--three">
-        <div class="bird bird--three"></div>
-    </div>
-
-    <div class="bird-container bird-container--four">
-        <div class="bird bird--four"></div>
-    </div>
-          
-</div>
-    <div style="height: 100vh">
-      <img src="https://image.tmdb.org/t/p/w342//tlJuznSuaX4XsRsZ7l7RTHYAwEr.jpg" style="height: 50vh" alt="">
-      <div style="height: 50vh">
-        <h1 class="mt-5">추천영화</h1>
-        <MovieList :movies='movies'/>
+      <div class="bird-container bird-container--one">
+          <div class="bird bird--one"></div>
       </div>
+
+      <div class="bird-container bird-container--two">
+          <div class="bird bird--two"></div>
+      </div>
+
+      <div class="bird-container bird-container--three">
+          <div class="bird bird--three"></div>
+      </div>
+
+      <div class="bird-container bird-container--four">
+          <div class="bird bird--four"></div>
+      </div>
+          
     </div>
-    <h1>장르</h1>
-    <MovieList :movies='movies'/>
-    <h1>장르</h1>
-    <MovieList :movies='movies'/>
-    <h1>장르</h1>
-    <MovieList :movies='movies'/>
+
+    <div>
+      <h1 class="mt-5">추천영화</h1>
+      <MovieList :movies='movies'/>
+    </div>
+    <div v-for="genre in selected_genre" :key="genre.id">
+      <h1>{{ genre[0] }}</h1>
+      <MovieList :movies='genre[1]'/>
+    </div>
 
   </div>
 </template>
@@ -52,7 +47,26 @@ export default {
   data() {
     return {
       movies: null,
-      genres: [12, 14, 16, 18, 27, 28, 35, 36, 53, 80, 878, 9648, 10402, 10749, 10751, 10752]
+      genres:  [
+          [12,	'Adventure']
+          ,[14,	'Fantasy']
+          ,[16,	'Animation']
+          ,[18,	'Drama']
+          ,[27,	'Horror']
+          ,[28,	'Actio']
+          ,[35,	'Comedy']
+          ,[36,'	History']
+          ,[53,	'Thriller']
+          ,[80,	'Crime']
+          ,[878,	'Science Fiction']
+          ,[9648,	'Mystery']
+          ,[10402,	'Music']
+          ,[10749,	'Romance']
+          ,[10751,	'Family']
+          ,[10752,	'War']
+      ],
+      selected_genres_id: null,
+      selected_genre: []
     }
   },
   methods: {
@@ -61,16 +75,23 @@ export default {
         .then((res)=>{
           this.movies = res.data
         })
+    },
+    SelectGenres() {
+      this.selected_genres_id = this.lodash.sampleSize(this.genres,3)
+      this.selected_genres_id.forEach(element => {
+        axios.get(API_URL+'/genre_movie/'+element[0])
+          .then((res)=>{
+            this.selected_genre.push([element[1],res.data])
+          })
+      });
     }
   },
   created() {
     this.GetMovie()
+    this.SelectGenres()
   }
 }
 </script>
-
-### 스타일에 이거 넣으면 됨
-
 
 <style lang='scss' >
  @import url('https://fonts.googleapis.com/css?family=Arima+Madurai:300');

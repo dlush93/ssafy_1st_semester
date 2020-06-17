@@ -3,7 +3,7 @@
   <div class="text-dark w-100 h-100 m-0" style="height:100rm;">
 
     <div class="pt-4">
-      <h1>{{ community.name }}</h1>
+      <h1 class="text-white font-weight-bold">{{ community.name }}</h1>
       <div class="d-flex justify-content-end px-5">
         <button data-toggle="modal" :data-target="'#Modal'" class="btn btn-outline-primary">글쓰기</button>
 
@@ -17,7 +17,6 @@
         <div class="MenuLeft col-2">
           <p class="mb-4 text-light menu text-center p-1" >커뮤니티 게시판</p>
           <ul class="px-4">
-            <!-- <router-link v-for="community in communityList" :key="community.id" :to="`/community/${community.id}`" class="menu-item">{{ community.name }}</router-link> -->
             <li v-for="community in communityList" :key="community.id" class="menu-item" @click="setCommnuity(community)">{{ community.name }}</li>
           </ul>
         </div>
@@ -106,8 +105,8 @@ export default {
     line-height: 30px;
     list-style-type: none;
   }
-  .communityback{
+  /* .communityback{
     background-image: url('../../assets/background.jpg') !important;
     opacity : 0.75;
-  }
+  } */
 </style> 

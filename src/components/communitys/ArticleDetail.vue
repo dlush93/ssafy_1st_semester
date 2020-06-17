@@ -17,9 +17,14 @@
       </div>
       
       <nav class="blog-pagination mbt-5">
-        <p class="btn btn-outline-primary" @cilck="like"> 추 천 </p>
-        <p class="btn btn-outline-secondary disabled"> {{ article.like_users_count }}명</p>
+        <button class="btn btn-outline-primary" :class="{likestatus: this.likestatus}" @click="like"> 추 천 </button>
+        <p class="btn btn-outline-secondary disabled m-0"> {{ article.like_users_count }}명</p>
       </nav>
+
+      <div v-if="'admin'===username">
+        <button class="btn btn-outline-primary">등업 시키기</button>
+      </div>
+
     </div>
   </div>
 </template>
@@ -28,15 +33,29 @@
 import axios from 'axios'
 
 const LIKE_URL = 'http://127.0.0.1:8000/api/v1/community/like/'
+const USER_URL = 'http://127.0.0.1:8000/accounts/'
 
 export default {
   name: 'ArticleDetail',
   data() {
     return {
-      article: this.$route.params.article
+      article: this.$route.params.article,
+      likestatus : false,
+      username: '',
     }
   },
   methods: {
+    getUser() {
+      const request_header = {
+        headers: {
+          'Authorization': `Token ${this.$cookies.get('auth-token')}`,
+        }
+      }
+      axios.post(USER_URL,null,request_header)
+        .then((res)=>{
+          this.username = res.data.username
+        })
+    },
     like() {
       const request_header = {
         headers: {
@@ -45,12 +64,30 @@ export default {
       }
       axios.post(LIKE_URL+this.article.id,null,request_header)
         .then((res)=>{
-          console.log(res.data)
+          this.likestatus = res.data.likestatus
+          if (this.likestatus) {
+            this.article.like_users_count += 1
+          }else {
+            this.article.like_users_count -= 1
+          }
+          alert(res.data.message)
         })
     }
   },
+  created(){
+    this.getUser()
+  },
+  updated(){
+    this.getUser()
+  }
 }
 </script>
 
 <style>
+  .likestatus {
+    background: red ;
+    color: seashell;
+    border: red;
+  }
+
 </style>

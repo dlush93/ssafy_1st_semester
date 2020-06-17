@@ -9,6 +9,7 @@ urlpatterns = [
     path('<int:movie_id>/comments/',views.CommentCreate),
     #### Movie에 평점 삭제하는 곳
     path('comments/<int:comment_id>/',views.CommentDelete),
+    #### Genre에 대한 영화 추천 해주는 곳 ###
     path('genre_movie/<int:genre_id>',views.genremovierecommand)
 ]
 

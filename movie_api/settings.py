@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'accounts',
     'movies',
     'community',
+    #### drf-yasg ####
+    'drf_yasg',
 
 ]
 ### django_rest-allauth #####

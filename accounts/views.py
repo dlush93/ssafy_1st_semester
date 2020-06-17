@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from .serializers import FollowerSerializer,UserGradeSerializer
-from community.serializers import LikeArticleListSerializer,ArticleListSerializer
+from community.serializers import LikeArticleListSerializer,ArticleListSerializer,UserArticleListSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
@@ -44,7 +44,7 @@ def like_article(reqeust,username):
     """
     User = get_user_model()
     liked_user = User.objects.get(username=username).like_articles.all()
-    serializer = LikeArticleListSerializer(liked_user,many=True)
+    serializer = UserArticleListSerializer(liked_user,many=True)
     return Response(serializer.data)
 
 
@@ -112,3 +112,21 @@ def user_total_profile(reqeust,username):
         'like_count': like_count,
     }
     return Response(serializer)
+
+
+@api_view(['GET'])
+def movie_ranks(reqeust,username):
+    """
+    회원이 작성한 평점 목록을 알 수 있는 곳입니다.
+    ---
+    username을 넣어보세요. 평점을 작성한 영화, 평점, 댓글을 알 수있습니다.
+    """
+    User = get_user_model()
+    target_user = User.objects.get(username=username)
+    target_movierank = target_user.movierank_set.all()
+    movies = []
+    for movierank in target_movierank:
+        temp = movierank.movie
+        temp_dic = {'id':movierank.id, 'title':temp.title,'rank':movierank.rank,'content':movierank.content}
+        movies.append(temp_dic)
+    return Response(movies)

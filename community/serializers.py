@@ -33,6 +33,11 @@ class ArticleSerializer(serializers.ModelSerializer):
         exclude = ['like_users',]
         read_only = ('created_at','updated_at')
 
+class UserArticleListSerializer(serializers.ModelSerializer):
+    community = CommunitySerializer(required=False)
+    class Meta:
+        model = Article
+        fields = ['id','community','title','created_at']
 
 class LikeUserSerializer(serializers.ModelSerializer):
     like_users = UserSerializer(many=True)

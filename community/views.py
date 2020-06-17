@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .serializers import ArticleListSerializer,ArticleSerializer,CommunitySerializer,LikeUserSerializer
+from django.contrib.auth import get_user_model
+from .serializers import ArticleListSerializer,ArticleSerializer,CommunitySerializer,LikeUserSerializer,UserArticleListSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Article,Community

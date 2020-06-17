@@ -49,7 +49,7 @@ Vue.use(VueRouter)
     name: 'CommunityView',
     component: CommunityView,
     children: [
-      { path: '', component: ArticleList },
+      { path: '', name:'CommunityView', component: ArticleList },
       { path: 'detail',name:'ArticleDetail', component: ArticleDetail },
     ]
   },

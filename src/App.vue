@@ -1,6 +1,6 @@
 <template>
 
-  <div id="app" class="d-flex w-100 h-100 mx-auto flex-column">
+  <div id="app" class="d-flex w-100 h-100 mx-auto flex-column" :class="{communityback :isactive.CommunityView}">
     <header class="masthead m-3">
       <div class="inner" style="height=100%">
         <img src="./assets/Logo.png" alt="로고"  class="masthead-brand" height="50px">
@@ -110,6 +110,7 @@ export default {
     },
     routercheck(){
       for (var element in this.isactive){
+        console.log(this.$router.currentRoute.name)
         if (element == this.$router.currentRoute.name){
           this.isactive[element] = true
         } else{

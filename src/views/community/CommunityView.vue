@@ -22,7 +22,7 @@
         </div>
 
         <div class="px-5 col-10">
-          <router-view :articles="articles"></router-view>
+          <router-view :community="community" :articles="articles"></router-view>
         </div>
       </div>
     </div>
@@ -62,6 +62,9 @@ export default {
       Axios.get(API_URL+id)
         .then((res)=>{
           this.articles = res.data
+          this.articles.forEach(element => {
+            element.content = element.content.replace(/(\n|\r\n)/g, '<br>');
+          });
         })
     },
     setCommnuity(community) {

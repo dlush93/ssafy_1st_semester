@@ -12,7 +12,7 @@
       </div>
 
       <div class="blog-post">
-        <p>{{ article.content}}</p>
+        <p v-html="article.content"></p>
         <hr class="mt-3">
       </div>
       
@@ -21,8 +21,8 @@
         <p class="btn btn-outline-secondary disabled m-0"> {{ article.like_users_count }}명</p>
       </nav>
 
-      <div v-if="'admin'===username">
-        <button class="btn btn-outline-primary">등업 시키기</button>
+      <div v-if="'admin'===username" >
+          <button class="btn btn-outline-primary" @click="gradeup">등업 시키기</button>
       </div>
 
     </div>
@@ -42,6 +42,11 @@ export default {
       article: this.$route.params.article,
       likestatus : false,
       username: '',
+    }
+  },
+  props :{
+    community : {
+      type : Object
     }
   },
   methods: {
@@ -72,6 +77,9 @@ export default {
           }
           alert(res.data.message)
         })
+    },
+    gradeup(){
+      alert("이창완4 회원등급 완료")
     }
   },
   created(){

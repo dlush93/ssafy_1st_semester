@@ -160,9 +160,9 @@ export default {
         }
       }
       axios.post(BASE_URL+'api/v1/community/'+this.article.id+'/comments/',{'content' : this.commentSend},request_header)
-      .then(res=>{
+      .then(()=>{
         this.commentSend = ""
-        console.log(res.data)
+        this.$router.back()
       })
     },
     getCommentList(){

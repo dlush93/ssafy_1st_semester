@@ -73,17 +73,12 @@ export default {
       this.getArticles(this.community.id)
     },
     test() {
-      const communitybtn = document.querySelector(`#community1`)
-      communitybtn.click()
+      console.log('1')
     }
   },
   created() {
     this.getCommunityList()
     this.getArticles(this.community.id)
-    this.test()
-  },
-  mounted(){
-    this.test()
   }
 }
 

@@ -94,7 +94,7 @@ export default {
       axios.delete(`${API_URL}api/v1/community/commentlist/${this.comment.id}/`,request_header)
       .then(()=>{
         alert('삭제되었습니다.')
-        this.$route.go()
+        this.$router.push({name:'CommunityView'})
       })
     }
   },

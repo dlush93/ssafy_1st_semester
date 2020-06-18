@@ -58,13 +58,14 @@ export default {
       this.isLogined = true
     },
     login(loginData) {
-      axios.post(API_URL + '/rest-auth/login/', loginData)
+      axios.post(API_URL + 'rest-auth/login/', loginData)
         .then((res)=>{
           this.cookies_set(res.data.key)
           this.$router.back()
         })
         .catch((err)=>{
           console.log(err.response)
+          alert('아이디나 비밀번호가 틀렸습니다. 다시한번 확인해주세요')
         })
     },
     logout() {
@@ -73,7 +74,7 @@ export default {
           'Authorization': `Token ${this.$cookies.get('auth-token')}`
         }
       }
-      axios.post(API_URL + '/rest-auth/logout/', null, request_header)
+      axios.post(API_URL + 'rest-auth/logout/', null, request_header)
         .then(()=>{
           this.isLogined = false
           this.$cookies.remove('auth-token')
@@ -84,7 +85,7 @@ export default {
         })
     },
     signup(signupData) {
-      axios.post(API_URL + '/rest-auth/signup/', signupData)
+      axios.post(API_URL + 'rest-auth/signup/', signupData)
         .then((res)=>{
           this.cookies_set(res.data.key)
           this.$router.back()

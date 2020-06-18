@@ -25,7 +25,8 @@ SECRET_KEY = '*h0!ewyxoz3_-y-mao08pt8ouug-pv@0e4q*-m6d6g*fs$2f#y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.compute.amazonaws.com',
+    '*',]
 
 ####  PageNumberPagination
 REST_FRAMEWORK = {

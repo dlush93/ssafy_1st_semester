@@ -14,5 +14,7 @@ urlpatterns = [
     #### 회원 profile 정보들
     path('profile/<username>/',views.user_total_profile),
     ### 평점 준 영화 목록 
-    path('movie_ranks/<username>',views.movie_ranks)
+    path('movie_ranks/<username>',views.movie_ranks),
+    #### 슈퍼유저인지 아닌지 확인하는 것
+    path('superuser/',views.getsuperuser),
 ]

@@ -29,9 +29,9 @@ def grade(request,username):
             grade_user.grade +=1
             grade_user.save()
             serializer = UserGradeSerializer(grade_user)
-            return Response(serializer.data)
+            return Response({'message':'등업에 성공하셨습니다.'})
         else:
-            return Response({'message':'등업에 실패하셨습니다.'})
+            return Response({'message':'이미 등업이 완료된 계정입니다.'})
     else:
         return Response({'message':'관리자계정이 아닙니다.'})
 
@@ -130,3 +130,11 @@ def movie_ranks(reqeust,username):
         temp_dic = {'id':movierank.id, 'title':temp.title,'rank':movierank.rank,'content':movierank.content}
         movies.append(temp_dic)
     return Response(movies)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def getsuperuser(request):
+    if request.user.is_superuser:
+        return Response({'status':True})
+    else:
+        return Response({'status':False})

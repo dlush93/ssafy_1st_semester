@@ -19,7 +19,8 @@
 <script>
 import UserLikeArticleListitem from '@/components/profile/UserLikeArticleListitem.vue'
 import axios from 'axios'
-const API_URL = 'http://127.0.0.1:8000/accounts/like_article/'
+const BASE_URL = 'http://127.0.0.1:8000/'
+const API_URL = BASE_URL+'accounts/like_article/'
 export default {
   name : 'UserLikeArticleList',
   data(){

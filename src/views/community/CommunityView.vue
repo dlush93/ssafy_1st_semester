@@ -17,7 +17,7 @@
         <div class="MenuLeft col-2">
           <p class="mb-4 text-light menu text-center p-1" >커뮤니티 게시판</p>
           <ul class="px-4">
-            <li v-for="community in communityList" :key="community.id" class="menu-item" @click="setCommnuity(community)">{{ community.name }}</li>
+            <li v-for="community in communityList" :key="community.id" class="menu-item" :id="`community${community.id}`" @click="setCommnuity(community)">{{ community.name }}</li>
           </ul>
         </div>
 
@@ -33,8 +33,8 @@
 <script>
 import ArticleCreateModal from '@/components/communitys/ArticleCreateModal.vue'
 import Axios from 'axios'
-
-const API_URL = 'http://127.0.0.1:8000/api/v1/community/'
+const BASE_URL = 'http://127.0.0.1:8000/'
+const API_URL = BASE_URL+'api/v1/community/'
 
 export default {
   name: 'CommunityView',
@@ -42,7 +42,7 @@ export default {
     return {
       articles: null,
       community: {
-        name: '등업게시판',
+        name: '자유게시판',
         id: 1
       },
       communityList: [],
@@ -73,16 +73,18 @@ export default {
       this.getArticles(this.community.id)
     },
     test() {
-      console.log('!!')
+      const communitybtn = document.querySelector(`#community1`)
+      communitybtn.click()
     }
   },
   created() {
     this.getCommunityList()
     this.getArticles(this.community.id)
+    this.test()
   },
-  updata() {
-    this.getArticles(this.community.id)
-  },
+  mounted(){
+    this.test()
+  }
 }
 
 </script>

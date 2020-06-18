@@ -33,8 +33,8 @@
 <script>
 import MovieRankListItem from '@/components/movies/MovieRankListItem.vue'
 import axios from 'axios'
-
-const API_URL = 'http://127.0.0.1:8000/api/v1/movies/'
+const BASE_URL = 'http://127.0.0.1:8000/'
+const API_URL = BASE_URL+'api/v1/movies/'
 // <int : movie.id>/comments
 export default {
   name: 'MovieRankList',

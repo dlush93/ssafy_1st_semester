@@ -40,7 +40,8 @@ import MovieRankList from '@/components/movies/MovieRankList.vue'
 import axios from 'axios'
 
 const MAIN_URL = 'https://image.tmdb.org/t/p/original'
-const API_URL = 'http://127.0.0.1:8000/api/v1/movies/'
+const BASE_URL = 'http://127.0.0.1:8000/'
+const API_URL = BASE_URL+'api/v1/movies/'
 
 export default {
   name: 'MovieDetail',

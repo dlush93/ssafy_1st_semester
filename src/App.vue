@@ -33,7 +33,7 @@
 <script>
 import axios from 'axios'
 
-const API_URL = 'http://127.0.0.1:8000'
+const API_URL = 'http://127.0.0.1:8000/'
 
 export default {
   name: 'App',
@@ -101,7 +101,7 @@ export default {
       }
       if(this.$cookies.isKey('auth-token')) {
         this.isLogined = true
-        axios.post('http://127.0.0.1:8000/accounts/',null,request_header)
+        axios.post(`${API_URL}accounts/`,null,request_header)
           .then((res)=> {
             this.username = res.data.username
           })

@@ -36,8 +36,8 @@
 <script>
 import MovieList from '@/components/movies/MovieList.vue'
 import axios from 'axios'
-
-const API_URL = 'http://127.0.0.1:8000/api/v1/movies'
+const BASE_URL = 'http://127.0.0.1:8000/'
+const API_URL = BASE_URL+'api/v1/movies'
 
 export default {
   name: 'MovieView',

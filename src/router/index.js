@@ -96,7 +96,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['MovieList', 'LoginView', 'SignupView', 'MovieDetail', 'CommunityView', 'CommunityDetailView']  // Login 안해도 됨
+  const publicPages = ['MovieList', 'LoginView', 'SignupView', 'MovieDetail',]  // Login 안해도 됨
   const authPages = ['LoginView', 'SignupView']  // Login 되어있으면 안됨
   
   const authRequired = !publicPages.includes(to.name)  // 로그인 해야 함.

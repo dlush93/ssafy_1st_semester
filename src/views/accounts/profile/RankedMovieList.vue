@@ -19,7 +19,8 @@
 <script>
 import axios from 'axios'
 import RankedMovieListitem from '@/components/profile/RankedMovieListitem.vue'
-const API_URL = 'http://127.0.0.1:8000/accounts/movie_ranks/'
+const BASE_URL = 'http://127.0.0.1:8000/'
+const API_URL = BASE_URL+'accounts/movie_ranks/'
 export default {
   name : 'RankedMovieList',
   data(){

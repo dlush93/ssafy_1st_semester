@@ -1,0 +1,107 @@
+/* 03_home.css */
+/* 아래에 코드를 작성해 주세요. */
+#cover {
+    display: flex;
+    justify-content: center;
+    
+    height: 500px;
+    background-image: url('images/header.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-wrap: wrap;
+    padding-top: 80px;
+    vertical-align: middle;
+    align-items: center;
+
+  }
+  .cover-title {
+    color: white;
+    font-size: 2.5rem;
+    text-align: center;
+    width: 100%;
+    
+    margin-bottom: 25px;
+  
+    
+
+  }
+  .ul-class{
+      
+      margin: 0em;
+      padding-inline-start: 0em;
+      align-items: center;
+
+      padding-top: auto;
+      padding-bottom: auto;
+  }
+  .li-class{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+
+  section{
+      display: flex;
+      height: 500px;
+      background-color: white;
+      background-repeat: no-repeat;
+      background-size: cover;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-content: center;
+      margin-bottom: 60px;
+  }
+  .section-title{
+      color:black;
+      font-size: 2.5rem;
+      text-align: center;
+      width: 100%;
+      position: absolute;
+      margin-top: 75px;
+      padding-bottom: 50px;
+     
+  }
+  .section-items{
+      width: 150px;
+      height: auto;
+      margin: 50px;
+  }
+  .timgcaption {
+    font-size: 20px;
+    line-height: 17px;
+    text-align: center;
+    color:black;
+    font-style: normal;
+}
+figure{
+    margin: 0em;
+    padding-top: 147px;
+    padding-bottom: 75px;
+}
+  
+  .button {
+    width:100px;
+    background-color: blue;
+    border: none;
+    color:#fff;
+    padding: 10px 0;
+    text-align: center;
+    
+    text-decoration: none;
+
+    display: inline-block;
+
+    font-size: 15px;
+    margin-top: 25px;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+.button:hover{
+    filter: brightness(50%);
+}
+.button a{
+
+    color: white;
+    text-decoration: none;
+}

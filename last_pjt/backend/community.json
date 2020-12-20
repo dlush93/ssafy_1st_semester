@@ -1,0 +1,1 @@
+[{"model": "community.community", "id": 1, "fields": {"name": "자유게시판","rank":1}},{"model": "community.community", "id": 2, "fields": {"name": "등업게시판","rank":0}}]

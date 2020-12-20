@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="text-center h1 col-6 offset-3 mt-5 mb-5" style="border-bottom: 2px solid">영화 리뷰 게시판</div>
+    <div class="row justify-content-center border">
+    <div class="h4 text-center border-bottom col-8 offset-2 my-5 mx-0 px-0">{{ movie.title }}</div>
+    <img src="{{ movie.poster }}" class="col-6" alt="">
+    <div class="col-12 my-5"></div>
+    {% if user.is_superuser %}
+        <a href="{% url 'movies:update' movie.id %}" class="mx-5"> 수정</a>
+        <a href="{% url 'movies:delete' movie.id %}">삭제</a>
+    {% endif %}
+    <div class="pb-5"></div>
+    </div>
+{% endblock %}

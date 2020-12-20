@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+{% if request.resolver_match.url_name == 'create' %}
+    <p  class="my-5 text-center h1">새 영화 등록</p>
+{% else %}
+    <p  class="my-5 text-center h1">영화 수정</p>
+{% endif %}
+
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button> 제출</button>
+    </form>
+
+
+{% endblock %}

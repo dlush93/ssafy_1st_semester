@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="text-center h1 col-6 offset-3 mt-5 mb-5" style="border-bottom: 2px solid">영화 리뷰 게시판</div>
+    <div class="row justify-content-center border">
+        <div class="h4 text-center border-bottom col-8 offset-2 my-5 mx-0 px-0">{{ review.title }}</div>
+        <div class="h4 text-center border-bottom col-8 offset-2 mb-5 mx-0 px-0">작성자 : {{ review.user }}</div>
+        <div class="col-12"></div>
+        <img class="my-5"src="{{ review.movie.poster }}" alt="">
+        <p class="col-12 text-justify py-5 px-5 text-warning" style=" border:solid 1px black;font-size:1rem">
+            {{review.content}}
+        </p>
+
+        <div class="offset-4 col-8 text-right mt-5">
+           <p> 작성 날짜 : {{ review.created_at}} </p>
+        </div>
+        <div class="offset-4 col-8 text-right">
+           <p> 수정 날짜 : {{ review.updated_at}} </p>
+        </div>
+
+            {% if request.user == review.user %}
+                <div class="d-flex justify-content-end col-12">
+                    <form action="{% url 'reviews:review_update' review.id %}" class="mx-5 my-5">
+                        <input type="submit" value="수정">
+                    </form>
+                <form action="{% url 'reviews:review_delete' review.id %}" method="POST" class="mx-5 my-5">
+                    {% csrf_token %}
+                    <input type="submit" value="삭제">
+                </form>
+                </div>
+            {% endif %}
+
+
+
+
+      {% if request.user in review.like_users.all %}
+      <a href="{% url 'reviews:like' review.id %}">🧡좋아요취소 {{ review.like_users.count }}</a>
+      {% else %}
+      <a href="{% url 'reviews:like' review.id %}">🤍좋아요 {{ review.like_users.count }}</a>
+      {% endif %}
+
+
+
+
+{% if request.user.is_authenticated %}
+<div class="col-12 mb-5">
+<form action="{% url 'reviews:comments_create' review.id%}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="댓글 작성">
+</form>
+</div>
+{% endif %}
+<hr>
+{% for comment in review.comment_set.all %}
+    <div class="border border-dark col-12 row my-2">
+    <div class="col-2 py-2">댓글내용</div> <div class="col-3 py-2">: {{comment.content}}</div>
+    <div class="col-3 py-2">작성자 : {{comment.user.username}}</div>
+    <div class="col-4 py-2">
+    {% if request.user == comment.user %}
+    <form action="{% url 'reviews:comments_delete' review.id comment.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제">
+    </form>
+    {% endif %}
+    </div>
+    </div>
+
+{% endfor %}
+
+
+{% endblock %}

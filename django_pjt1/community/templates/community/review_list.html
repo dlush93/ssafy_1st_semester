@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-5 align-content-center">
+    <div class="row">
+<table class="table">
+<thead class="thead-dark">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">글제목</th>
+          <th scope="col">내용</th>
+          <th scope="col">평점</th>
+          <th scope="col">작성날짜</th>
+        </tr>
+      </thead>
+      <tbody>
+{% for review in reviews %}
+    <tr>
+      <th scope="row">{{ review.id }}</th>
+      <td class="text-truncate" style="max-width: 200px;">  <a href="/community/review_detail/{{ review.id }}" class="text-dark text-decoration-none">{{ review.title }}</a></td>
+      <td class="text-truncate" style="max-width: 400px;">{{ review.content }}</td>
+      <td>{{ review.rank }}</td>
+      <td>{{ review.created_at }}</td>
+    </tr>
+
+{% endfor %}
+  </tbody>
+</table>
+<nav class="offset-4" aria-label="Page navigation example">
+            <ul class="pagination m-0">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+</div>
+</div>
+{% endblock %}

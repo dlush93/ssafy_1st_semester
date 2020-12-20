@@ -1,0 +1,37 @@
+/* 아래애 자유롭게 꾸며 주세요! */
+body{
+    text-align: center;
+}
+input{
+    width: 498px;
+    height: 35px;
+    border: 1px solid black;
+}
+
+form{
+    width: 500px;
+    margin: 30px auto 30px auto;
+
+}
+form > p{
+    margin-bottom: 1px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+form > div{
+    margin-top: 3px;
+    color: gray;
+    font-size: 12px;
+    text-align: left;
+}
+button{
+    width: 500px;
+    height: 40px;
+    border-radius: 3px;
+    padding: 0px;
+    border: 1px solid gray;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(127, 16, 231);
+}

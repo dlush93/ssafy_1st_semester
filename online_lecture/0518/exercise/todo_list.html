@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0518 exercise & workshop</title>
+</head>
+<body>
+  <h2>Add New Todo</h2>
+  <p id="addNewTodo"></p>
+  <hr>
+
+  <h2>Todo List</h2>
+  <ul id="toDoList"></ul>
+  <hr>
+
+  <h2>Completed Todo</h2>
+  <ul id="todoComplete"></ul>
+  <hr>
+
+  <script>
+    // 여기에 코드를 작성하시오.
+    document.addEventListener('copy',function(event) {
+      
+      // document.execCommand('Underline')
+      var txt = '\n 출처 : 이창완'
+      var txturl = '\n [출처] : '+document.URL 
+      
+      event.preventDefault()
+      event.clipboardData.setData('text/plain',document.getSelection()+txturl)
+      /// text/plain 을 쓰면 된다.
+      /// text/plain : 일반텍스트
+      /// text/html : html 문자열
+      /// text/url-list : url 문자열 목록
+      /// event메서드에서 getData('text')를 쓸수 없는 이유는 event메서드가 복사시킬 값을
+      /// 이벤트 리스너가 가로챘기 때문에 드래그한 내용을 가져오기 위해서
+      /// 참고한 사이트 : https://gunbin91.github.io/etc/2018/09/05/clipboardControl.html
+      alert('복사가 성공적으로 되었습니다 :\n'+ event.clipboardData.getData('text/plain'))
+      // event.preventDefault() // 이전으로 바꿔놓는다.
+    })
+
+
+
+
+    const newTodoLabel = document.createElement('label')
+    newTodoLabel.innerText='Add New Todo:'
+
+    const newTodoInput = document.createElement('input')
+
+    newTodoInput.type = 'text' 
+    newTodoInput.required = true
+    // newTodoInput.setAttribute('type','text')
+
+    const newTodoBtn = document.createElement('button')
+    newTodoBtn.innerText = 'Add'
+    /// 클릭했을때 자동으로 creteTodo 함수를 실행해 넣어준다.
+    newTodoBtn.addEventListener('click',function() {
+      createTodo(newTodoInput.value)
+      newTodoInput.value = null
+    })
+
+
+
+
+    const newTodoArea = document.querySelector('#addNewTodo')
+    newTodoArea.append(newTodoLabel,newTodoInput,newTodoBtn)
+
+
+
+    const createTodo = (todoName) =>{ 
+      const newList = document.createElement('li')
+      // 생성하는 List
+
+      //// 1. 체크박스를 만드는과정
+      const newTodoCheckbox = document.createElement('input')
+      newTodoCheckbox.type = 'checkbox'
+      newList.appendChild(newTodoCheckbox)
+
+      //// 1-1.체크박스를 체크했을때 발생하는 EVENT
+      newTodoCheckbox.addEventListener('click',function(event){
+        console.log(event)
+        console.log(event.target)              
+        console.log(event.target.checked) // 이벤트가 발생한 타겟의 checked를 확인하는것인데. 그냥 바로 
+                                          //newTodoCheckbox.checked도 되지만 일반적이지 않다.
+        if (event.target.checked){
+          TodoListLabel.style.textDecoration = "line-through"
+          todoComplete.append(newList)
+
+
+        }
+        else{
+          TodoListLabel.style.textDecoration = ""  
+          toDoList.append(newList)
+        }
+      })            
+
+      //// 2. 라벨을 만드는 과정 : 이것은 todoName을 입력받아 자동적으로 Text로 넣어준다.
+      const TodoListLabel = document.createElement('label')
+      TodoListLabel.innerText = todoName+':'
+      newList.appendChild(TodoListLabel)
+
+
+      /// 3.  내가 넣을 ul 태그를 찾아오는 과정
+      const toDoList = document.querySelector('#toDoList')
+      
+      /// 4. 그리고 모든 것을 넣어주는 과정
+      toDoList.appendChild(newList)
+
+
+      // event 과정에서 completed Todo로 옮기기 위해 Selector한 과정
+      const todoComplete = document.querySelector('#todoComplete')
+
+
+      //// 여기는 내가 추가로 workshop을 더 공부하는 과정
+      /// edit을 위한 Input태그를 만들어준 과정
+      const newTodoEditInput = document.createElement('input')
+      newTodoEditInput.type ='text'
+      newList.appendChild(newTodoEditInput)
+
+      /// 수정버튼을 만드는 과정
+      const newTodoEditBtn = document.createElement('button')
+      /// ToDoListLabel 은 TodoList의 Label을 의미한다.
+      /// newList 는 TodoList의 ul을 나타내는 것이다.
+      newTodoEditBtn.innerText = 'Edit'
+      newTodoEditBtn.addEventListener('click',function(){
+        if (newTodoEditInput.value !== ""){
+        const temp2 = event.target.previousSibling
+        const temp1 = temp2.previousSibling
+        temp1.innerText = temp2.value+':'
+        temp2.value = null
+      }
+      })
+      newList.appendChild(newTodoEditBtn)
+      //// 삭제 버튼
+      //// newTodoDeleteBtn은 삭제버튼이다.
+      const newTodoDeleteBtn = document.createElement('button')
+      newTodoDeleteBtn.innerText = 'Delete'
+      newTodoDeleteBtn.addEventListener('click',function(event){
+        event.target.parentNode.remove()
+        // newList.remove()
+      })
+      newList.appendChild(newTodoDeleteBtn)
+
+
+
+
+    }
+
+
+    // const myList = ['장고복습','프로젝트마무리']
+    // myList.forEach(createTodo)
+    // myList.forEach((item)=>{createTodo(item)})
+
+
+
+
+
+  </script>
+</body>
+</html>
